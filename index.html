@@ -119,7 +119,7 @@
         transition: max-height 0.3s ease, opacity 0.3s ease;
       }
       .nav-links.open {
-        max-height: 320px;
+        max-height: 420px;
         opacity: 1;
       }
       .nav-links li { padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
@@ -644,6 +644,39 @@
     }
     .contact-links a svg { width: 20px; height: 20px; flex-shrink: 0; }
 
+    /* ----- Education ----- */
+    .education-grid {
+      display: grid;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .education-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .education-card:hover { border-color: var(--accent); box-shadow: 0 8px 32px rgba(99, 102, 241, 0.1); }
+    .education-card .school { font-weight: 700; font-size: 1.1rem; margin-bottom: 0.25rem; }
+    .education-card .degree { color: var(--green); font-family: var(--font-mono); font-size: 0.95rem; }
+    .education-card .meta { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; }
+
+    /* ----- Achievements ----- */
+    .achievements-list { margin-top: 2rem; }
+    .achievement-item {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .achievement-item:hover { border-color: var(--amber); box-shadow: 0 6px 24px rgba(251, 191, 36, 0.1); }
+    .achievement-item .title { font-weight: 700; margin-bottom: 0.35rem; }
+    .achievement-item .title .date { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+    .achievement-item .desc { color: var(--text-muted); font-size: 0.95rem; }
+
     /* ----- Footer ----- */
     footer {
       text-align: center;
@@ -652,6 +685,7 @@
       font-size: 0.85rem;
       color: var(--text-muted);
     }
+    .contact-location { font-family: var(--font-mono); font-size: 0.9rem; color: var(--text-muted); margin-top: 1rem; }
   </style>
 </head>
 <body>
@@ -664,6 +698,8 @@
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#achievements">Achievements</a></li>
       <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -748,7 +784,7 @@
         <div class="icon">🧠</div>
         <h3>LLMs & Generative AI</h3>
         <div class="skill-tags">
-          <span>Qwen</span><span>LLaMA</span><span>Gemma</span><span>Phi</span><span>Fine-tuning</span><span>LoRA</span><span>QLoRA</span><span>RLHF</span>
+          <span>Qwen</span><span>LLaMA</span><span>Gemma</span><span>Phi</span><span>Fine-tuning</span><span>LoRA</span><span>QLoRA</span><span>PEFT</span><span>RLHF</span>
         </div>
       </div>
       <div class="skill-card">
@@ -783,7 +819,7 @@
         <div class="icon">💻</div>
         <h3>Languages & Tools</h3>
         <div class="skill-tags">
-          <span>Python</span><span>SQL</span><span>C/C++</span><span>R</span><span>GCP</span><span>AWS</span><span>Git</span>
+          <span>Python</span><span>SQL</span><span>C/C++</span><span>R</span><span>GCP</span><span>AWS</span><span>Azure</span><span>FastAPI</span><span>Git</span>
         </div>
       </div>
     </div>
@@ -799,10 +835,10 @@
         <div class="timeline-role">AI/ML Engineer IV</div>
         <div class="timeline-company">Digital Currency Group</div>
         <ul class="timeline-bullets">
-          <li>Architected decentralized AI systems on FLock Network using Federated ML; forged collaborations with Animoca Brands, Pundi AI, Chasm, and OneKey.</li>
-          <li>Spearheaded fine-tuning of LLMs (Qwen, LLaMA, Gemma, Phi) on GKE with H100 GPUs, ArgoCD, MLFlow, and Helm.</li>
-          <li>Built VCScout-AI — a LangChain-based agentic pipeline analyzing 300+ startup deals, driving $450K+ in investment decisions.</li>
-          <li>Recognized as Top AI Arena performer; featured at EthCC Brussels for decentralized AI contributions.</li>
+          <li>Architected and scaled decentralized AI systems on the FLock Network using Federated ML; forged strategic collaborations with Animoca Brands, Pundi AI, Chasm, and OneKey to build LLM-powered agents for VC analysis, financial trading, sports analytics, and smart contract security.</li>
+          <li>Spearheaded fine-tuning of LLMs (Qwen, LLaMA, Gemma, Phi) and engineered a resilient ML pipeline using Argo CD, GKE (H100 GPUs), MLFlow, Helm, and Pub/Sub for scalable, production-grade training and inference.</li>
+          <li>Conceived and launched VCScout-AI, a LangChain-based agentic pipeline leveraging Qwen-7B and Weaviate Vector DB to analyze 300+ startup deals—directly driving $450K+ in AI-informed investment decisions.</li>
+          <li>Recognized as Top AI Arena performer and featured at EthCC Brussels; highlighted in the official FLock blog interview and tweet.</li>
         </ul>
       </div>
       <div class="timeline-item">
@@ -811,9 +847,9 @@
         <div class="timeline-role">AI/ML Engineer</div>
         <div class="timeline-company">Foundry Digital</div>
         <ul class="timeline-bullets">
-          <li>Spearheaded projects utilizing the FLock Network and Federated ML to build decentralized ML models on blockchain.</li>
-          <li>Achieved top-performing model status five times across the FLock network for four distinct cases.</li>
-          <li>Captured 1st place in two major hackathons and 2nd in another; led an ML workshop at RIT on training and deploying models on FLock and Akash Network.</li>
+          <li>Spearheaded innovative projects utilizing the FLock Network and Federated ML to revolutionize decentralized ML models on blockchain; achieved top-performing model status five times across the network for four distinct cases, resulting in significant FML token accumulation for Foundry.</li>
+          <li>Captured 1st place in two major hackathons and 2nd in another; led a workshop at RIT on Machine Learning in Crypto, training and deploying models on FLock and Akash Network.</li>
+          <li>Featured in FLock interviews highlighting innovative work in the network.</li>
         </ul>
       </div>
       <div class="timeline-item">
@@ -822,18 +858,19 @@
         <div class="timeline-role">Senior ML Engineer</div>
         <div class="timeline-company">OneBill Software</div>
         <ul class="timeline-bullets">
-          <li>Led ML projects for Sales & Marketing including customer clustering, recommender systems, and churn prediction — retaining 93% of at-risk customers.</li>
-          <li>Fine-tuned LLMs for industry queries, boosting automated resolution by 40%.</li>
+          <li>Led ML projects for Sales & Marketing, including Customer Account Clustering (K-Means) and a Product Recommender System (Collaborative Filtering) for 200+ accounts; implemented XGBoost churn prediction, retaining 93% of at-risk customers.</li>
+          <li>Designed profitability, market opportunity, and pricing dashboards driving 20%+ quarterly financial gains; fine-tuned LLMs for industry-specific queries, boosting automated query resolution by 40%.</li>
         </ul>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-date">Jun 2022 — May 2023</div>
+        <div class="timeline-date">Jun 2022 — Mar 2023</div>
         <div class="timeline-role">Deep Learning Engineer</div>
         <div class="timeline-company">Intel Corporation</div>
         <ul class="timeline-bullets">
-          <li>Optimized TensorFlow on Windows for Intel CPUs, accelerating benchmark performance of DNN models.</li>
-          <li>Built and released the TensorFlow binary to the worldwide TensorFlow community.</li>
+          <li>Optimized TensorFlow on Windows and pioneered an MLOps framework to streamline automation and acceleration of Neural Network benchmark performance on various Intel CPUs.</li>
+          <li>Enhanced Convolution Operations performance by 400% utilizing OneDNN; validated and addressed issues/bugs within TensorFlow CPU.</li>
+          <li>Built and released the TensorFlow binary to the worldwide TensorFlow community in collaboration with Google, achieving 10,000 downloads for TF 2.11 in a single day.</li>
         </ul>
       </div>
       <div class="timeline-item">
@@ -842,8 +879,7 @@
         <div class="timeline-role">Data Scientist Intern</div>
         <div class="timeline-company">Intel Corporation</div>
         <ul class="timeline-bullets">
-          <li>Developed an anomaly detection system for stress detection on Intel chips.</li>
-          <li>Pioneered an NLP-based QA system for retrieving information from Intel HAS documents.</li>
+          <li>Built a telemetry data pipeline (Grafana/Graphite), developed an Isolation Forest anomaly detection system (92% accuracy), and created a BERT-based QA system for technical document retrieval.</li>
         </ul>
       </div>
       <div class="timeline-item">
@@ -852,8 +888,7 @@
         <div class="timeline-role">Data Analyst Intern</div>
         <div class="timeline-company">Nokia</div>
         <ul class="timeline-bullets">
-          <li>Built Power BI dashboards and automated data pipelines for PreSales and Sales Training.</li>
-          <li>Co-authored Go-To-Market strategy solutions for cloud-based tools.</li>
+          <li>Designed Power BI dashboards, automated data pipelines (Flow), and contributed to go-to-market strategy solutions leading to a hyperscaler partnership.</li>
         </ul>
       </div>
       <div class="timeline-item">
@@ -862,8 +897,7 @@
         <div class="timeline-role">Graduate Teaching Assistant</div>
         <div class="timeline-company">Northeastern University</div>
         <ul class="timeline-bullets">
-          <li>Taught introductory Python, Machine Learning, and Data Analysis through case studies.</li>
-          <li>Orchestrated Business Practicum workshops and lab sessions.</li>
+          <li>Taught Python, Machine Learning, and Data Analysis to 250 students; led business practicum workshops and graded assignments.</li>
         </ul>
       </div>
       <div class="timeline-item">
@@ -872,9 +906,40 @@
         <div class="timeline-role">Software Development Engineer Intern</div>
         <div class="timeline-company">OneBill Software</div>
         <ul class="timeline-bullets">
-          <li>Developed a SOAP client application to connect to OneBill's platform via REST APIs.</li>
-          <li>Assisted in design and development of REST-based web services.</li>
+          <li>Developed SOAP/REST APIs and contributed to web service design using Postman and Maven.</li>
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="education" class="reveal">
+    <p class="section-label">// Education</p>
+    <h2 class="section-title">Background</h2>
+    <div class="education-grid">
+      <div class="education-card">
+        <div class="school">Northeastern University, Khoury College of Computer Sciences</div>
+        <div class="degree">Master of Science, Data Science</div>
+        <div class="meta">Boston, MA · Sept 2019 – May 2022 · GPA 3.8/4.0</div>
+      </div>
+      <div class="education-card">
+        <div class="school">Dayananda Sagar University</div>
+        <div class="degree">Bachelor of Technology, Computer Science and Engineering</div>
+        <div class="meta">Bangalore, India · Aug 2015 – June 2019 · GPA 8.2/10</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="achievements" class="reveal">
+    <p class="section-label">// Achievements</p>
+    <h2 class="section-title">Recognition</h2>
+    <div class="achievements-list">
+      <div class="achievement-item">
+        <div class="title">Top Performer on the FLock Network <span class="date">July 2024</span></div>
+        <p class="desc">Achieved top-performing model status 7 times across 7 distinct tasks on the blockchain-based FLock network. Featured internationally at EthCC Brussels and in the official FLock blog interview, tweet, and YouTube segment.</p>
+      </div>
+      <div class="achievement-item">
+        <div class="title">AIA Division Achievement Award, Intel <span class="date">Nov 2022</span></div>
+        <p class="desc">Recognition for the TensorFlow Windows project, leading to Intel's ownership of the TensorFlow CPU build from Google and the first successful release for the Windows ecosystem.</p>
       </div>
     </div>
   </section>
@@ -907,7 +972,7 @@
       <div class="portfolio-card">
         <span class="portfolio-tag project">Project</span>
         <h3>Brain Tumor Detection</h3>
-        <p>Deep learning model for detecting and classifying brain tumors from MRI scans using convolutional neural networks with high accuracy.</p>
+        <p>Developed a 12-layer TensorFlow CNN using Adam optimizer, Cross-Entropy loss, Dropout, and Batch Normalization, reaching 0.96 sensitivity for detecting tumors in MRI images.</p>
         <div class="portfolio-tech">
           <span>TensorFlow</span><span>CNN</span><span>Computer Vision</span><span>Medical AI</span>
         </div>
@@ -922,18 +987,26 @@
       </div>
       <div class="portfolio-card">
         <span class="portfolio-tag project">Project</span>
-        <h3>Recommender System</h3>
-        <p>Collaborative filtering-based product recommendation engine built for 200+ enterprise accounts to improve segmentation and upselling.</p>
+        <h3>Recommender Systems (Amazon Reviews)</h3>
+        <p>Built a collaborative filtering system using PCA-reduced user-item matrix, Agglomerative Hierarchical Clustering, and Matrix Factorization, achieving MAE of 0.096.</p>
         <div class="portfolio-tech">
-          <span>Collaborative Filtering</span><span>K-Means</span><span>XGBoost</span><span>Python</span>
+          <span>Collaborative Filtering</span><span>PCA</span><span>Matrix Factorization</span><span>Python</span>
         </div>
       </div>
       <div class="portfolio-card">
         <span class="portfolio-tag project">Project</span>
-        <h3>Semi-Supervised Learning for Imbalanced Data</h3>
-        <p>Novel approach to handling class imbalance using semi-supervised learning techniques for improved model performance on real-world datasets.</p>
+        <h3>Imbalanced Datasets: Preeclampsia Prediction</h3>
+        <p>Case study on the PROTECT health database: implemented Bootstrapping, SMOTE, and Semi-Supervised Learning with Autoencoders and classifiers to achieve 96% accuracy in predicting Preeclampsia in pregnant women.</p>
         <div class="portfolio-tech">
-          <span>Semi-supervised</span><span>Imbalanced Data</span><span>Python</span><span>Research</span>
+          <span>Semi-supervised</span><span>SMOTE</span><span>Autoencoders</span><span>Python</span>
+        </div>
+      </div>
+      <div class="portfolio-card">
+        <span class="portfolio-tag project">Project</span>
+        <h3>Diabetes Prediction in R</h3>
+        <p>Trained Logistic Regression, SVM, Random Forest, and XGBoost models; achieved 0.92 sensitivity; handled sparse/imbalanced data using ROSE sampling and Boruta feature selection.</p>
+        <div class="portfolio-tech">
+          <span>R</span><span>XGBoost</span><span>ROSE</span><span>Boruta</span>
         </div>
       </div>
     </div>
@@ -960,7 +1033,12 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         Phone
       </a>
+      <a href="https://www.jerryadamsfranklin.com/" target="_blank" rel="noopener noreferrer" aria-label="Personal website">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Website
+      </a>
     </div>
+    <p class="contact-location">Fairport, NY 14450 · <a href="mailto:franklin.je@northeastern.edu">franklin.je@northeastern.edu</a></p>
   </section>
 
   <footer>
