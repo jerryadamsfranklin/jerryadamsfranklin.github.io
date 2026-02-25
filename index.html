@@ -30,6 +30,7 @@
       --radius-lg: 24px;
       --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
       --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
       --shadow-mat: 0 4px 24px rgba(0, 0, 0, 0.4);
       --shadow-mat-hover: 0 8px 32px rgba(0, 0, 0, 0.5);
     }
@@ -81,7 +82,7 @@
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid transparent;
-      transition: padding 0.4s var(--ease-smooth), border-color 0.4s var(--ease-smooth), background 0.4s var(--ease-smooth);
+      transition: padding 0.5s var(--ease-premium), border-color 0.5s var(--ease-smooth), background 0.5s var(--ease-smooth);
     }
     .nav.scrolled {
       padding: 0.75rem 2rem;
@@ -105,8 +106,20 @@
       font-weight: 500;
       font-size: 0.95rem;
       transition: color 0.3s var(--ease-smooth);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--text);
+      transition: width 0.6s var(--ease-premium);
     }
     .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { width: 100%; }
     .nav-toggle {
       display: none;
       background: none;
@@ -166,7 +179,7 @@
       border-radius: 50%;
       filter: blur(120px);
       opacity: 0.18;
-      animation: float 18s var(--ease-smooth) infinite;
+      animation: float 26s var(--ease-premium) infinite;
     }
     .hero-orb:nth-child(1) {
       width: 400px; height: 400px;
@@ -204,13 +217,13 @@
       font-family: var(--font-mono);
       color: var(--text-muted);
       margin-bottom: 2rem;
-      animation: fadeUp 0.7s var(--ease-out-expo) forwards;
+      animation: fadeUp 1s var(--ease-premium) forwards;
     }
     .hero-badge-dot {
       width: 8px; height: 8px;
       background: var(--text-muted);
       border-radius: 50%;
-      animation: pulse 2s ease-in-out infinite;
+      animation: pulse 2.5s ease-in-out infinite;
     }
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
     .hero h1 {
@@ -219,7 +232,7 @@
       line-height: 1.1;
       letter-spacing: -0.02em;
       margin-bottom: 1rem;
-      animation: fadeUp 0.6s ease 0.1s forwards;
+      animation: fadeUpScale 1.1s var(--ease-premium) 0.25s forwards;
       opacity: 0;
     }
     .hero h1 .gradient {
@@ -233,7 +246,7 @@
       font-size: 0.9rem;
       color: var(--text-muted);
       margin-bottom: 0.75rem;
-      animation: fadeUp 0.6s ease 0.15s forwards;
+      animation: fadeUp 1s var(--ease-premium) 0.55s forwards;
       opacity: 0;
     }
     .hero-subtitle {
@@ -242,12 +255,32 @@
       color: var(--text-muted);
       max-width: 580px;
       margin: 0 auto 2rem;
-      animation: fadeUp 0.6s ease 0.2s forwards;
+      animation: fadeUp 1s var(--ease-premium) 0.8s forwards;
       opacity: 0;
     }
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUpScale {
+      from { opacity: 0; transform: translateY(16px) scale(0.99); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes lineGrow {
+      from { transform: scaleY(0); transform-origin: top; }
+      to { transform: scaleY(1); transform-origin: top; }
+    }
+    @keyframes dotPop {
+      from { opacity: 0; transform: scale(0); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes cardShine {
+      from { transform: translateX(-100%) skewX(-12deg); }
+      to { transform: translateX(200%) skewX(-12deg); }
     }
     .hero-buttons {
       display: flex;
@@ -255,7 +288,7 @@
       gap: 1rem;
       justify-content: center;
       margin-bottom: 2.5rem;
-      animation: fadeUp 0.6s ease 0.3s forwards;
+      animation: fadeUp 1s var(--ease-premium) 1.05s forwards;
       opacity: 0;
     }
     .btn {
@@ -268,9 +301,10 @@
       font-size: 0.95rem;
       border-radius: 16px;
       cursor: pointer;
-      transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s var(--ease-smooth), border-color 0.35s var(--ease-smooth), color 0.35s var(--ease-smooth);
+      transition: transform 0.5s var(--ease-premium), box-shadow 0.5s var(--ease-smooth), border-color 0.5s var(--ease-smooth), color 0.5s var(--ease-smooth);
     }
-    .btn:hover { transform: translateY(-3px); }
+    .btn:hover { transform: translateY(-3px) scale(1.02); }
+.btn:active { transform: translateY(-1px) scale(0.99); }
     .btn-primary {
       background: #fafafa;
       color: #0a0a0a;
@@ -289,11 +323,11 @@
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--border), transparent);
       margin: 0 auto 1rem;
-      animation: fadeUp 0.6s ease 0.4s forwards;
+      animation: fadeUp 1s var(--ease-premium) 1.35s forwards;
       opacity: 0;
     }
     .hero-companies-wrap {
-      animation: fadeUp 0.6s ease 0.4s forwards;
+      animation: fadeUp 1s var(--ease-premium) 1.55s forwards;
       opacity: 0;
     }
     .hero-companies-label {
@@ -333,12 +367,67 @@
     }
     .reveal {
       opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+      transform: translateY(24px);
+      transition: opacity 1.1s var(--ease-premium), transform 1.1s var(--ease-premium);
     }
     .reveal.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+    .reveal.visible .section-label {
+      animation: slideInLeft 0.9s var(--ease-premium) 0.15s both;
+    }
+    .reveal.visible .section-title {
+      animation: slideInLeft 0.9s var(--ease-premium) 0.35s both;
+    }
+    .reveal.visible .about-stats .stat-card,
+    .reveal.visible .skills-grid .skill-card,
+    .reveal.visible .portfolio-grid .portfolio-card,
+    .reveal.visible .education-grid .education-card,
+    .reveal.visible .achievements-list .achievement-item {
+      opacity: 0;
+      animation: fadeUpScale 0.85s var(--ease-premium) forwards;
+    }
+    .reveal.visible .about-stats .stat-card:nth-child(1) { animation-delay: 0.4s; }
+    .reveal.visible .about-stats .stat-card:nth-child(2) { animation-delay: 0.55s; }
+    .reveal.visible .about-stats .stat-card:nth-child(3) { animation-delay: 0.7s; }
+    .reveal.visible .about-stats .stat-card:nth-child(4) { animation-delay: 0.85s; }
+    .reveal.visible .skills-grid .skill-card:nth-child(1) { animation-delay: 0.35s; }
+    .reveal.visible .skills-grid .skill-card:nth-child(2) { animation-delay: 0.5s; }
+    .reveal.visible .skills-grid .skill-card:nth-child(3) { animation-delay: 0.65s; }
+    .reveal.visible .skills-grid .skill-card:nth-child(4) { animation-delay: 0.8s; }
+    .reveal.visible .skills-grid .skill-card:nth-child(5) { animation-delay: 0.95s; }
+    .reveal.visible .skills-grid .skill-card:nth-child(6) { animation-delay: 1.1s; }
+    .reveal.visible .portfolio-grid .portfolio-card:nth-child(1) { animation-delay: 0.35s; }
+    .reveal.visible .portfolio-grid .portfolio-card:nth-child(2) { animation-delay: 0.5s; }
+    .reveal.visible .portfolio-grid .portfolio-card:nth-child(3) { animation-delay: 0.65s; }
+    .reveal.visible .portfolio-grid .portfolio-card:nth-child(4) { animation-delay: 0.8s; }
+    .reveal.visible .portfolio-grid .portfolio-card:nth-child(5) { animation-delay: 0.95s; }
+    .reveal.visible .portfolio-grid .portfolio-card:nth-child(6) { animation-delay: 1.1s; }
+    .reveal.visible .portfolio-grid .portfolio-card:nth-child(7) { animation-delay: 1.25s; }
+    .reveal.visible .education-grid .education-card:nth-child(1) { animation-delay: 0.4s; }
+    .reveal.visible .education-grid .education-card:nth-child(2) { animation-delay: 0.65s; }
+    .reveal.visible .achievements-list .achievement-item:nth-child(1) { animation-delay: 0.4s; }
+    .reveal.visible .achievements-list .achievement-item:nth-child(2) { animation-delay: 0.65s; }
+    .reveal.visible .contact-links a { opacity: 0; animation: fadeUpScale 0.75s var(--ease-premium) forwards; }
+    .reveal.visible .contact-links a:nth-child(1) { animation-delay: 0.35s; }
+    .reveal.visible .contact-links a:nth-child(2) { animation-delay: 0.5s; }
+    .reveal.visible .contact-links a:nth-child(3) { animation-delay: 0.65s; }
+    .reveal.visible .contact-links a:nth-child(4) { animation-delay: 0.8s; }
+    .reveal.visible .contact-links a:nth-child(5) { animation-delay: 0.95s; }
+    .reveal.visible .contact-links a:nth-child(6) { animation-delay: 1.1s; }
+    .reveal.visible .about-text p {
+      opacity: 0;
+      animation: fadeUp 0.85s var(--ease-premium) forwards;
+    }
+    .reveal.visible .about-text p:nth-of-type(1) { animation-delay: 0.4s; }
+    .reveal.visible .about-text p:nth-of-type(2) { animation-delay: 0.6s; }
+    .reveal.visible .about-text p:nth-of-type(3) { animation-delay: 0.8s; }
+    .reveal.visible .about-text p:nth-of-type(4) { animation-delay: 1s; }
+    .reveal.visible .about-text p:nth-of-type(5) { animation-delay: 1.2s; }
+    .reveal.visible .skills-subtitle {
+      opacity: 0;
+      animation: slideInLeft 0.9s var(--ease-premium) 0.55s both;
     }
 
     /* ----- About ----- */
@@ -349,7 +438,7 @@
       align-items: start;
       margin-top: 2rem;
     }
-    .about-text p { margin-bottom: 1.25rem; color: var(--text-muted); }
+    .about-text p { margin-bottom: 1.25rem; color: var(--text-muted); opacity: 0; }
     .about-stats {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -360,11 +449,24 @@
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       padding: 1.5rem;
-      transition: transform 0.4s var(--ease-out-expo), border-color 0.35s var(--ease-smooth), box-shadow 0.4s var(--ease-smooth);
+      transition: transform 0.55s var(--ease-premium), border-color 0.5s var(--ease-smooth), box-shadow 0.55s var(--ease-smooth);
       backdrop-filter: blur(8px);
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.03) 50%, transparent 60%);
+      transform: translateX(-100%);
+      pointer-events: none;
+    }
+    .stat-card:hover::after {
+      animation: cardShine 1s var(--ease-premium);
     }
     .stat-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-5px) scale(1.02);
       border-color: var(--border-hover);
       box-shadow: var(--shadow-mat-hover);
     }
@@ -385,6 +487,7 @@
       color: var(--text-muted);
       margin-bottom: 2rem;
       max-width: 560px;
+      opacity: 0;
     }
     .skills-grid {
       display: grid;
@@ -399,7 +502,7 @@
       padding: 1.5rem;
       position: relative;
       overflow: hidden;
-      transition: transform 0.4s var(--ease-out-expo), border-color 0.35s var(--ease-smooth), box-shadow 0.4s var(--ease-smooth);
+      transition: transform 0.55s var(--ease-premium), border-color 0.5s var(--ease-smooth), box-shadow 0.55s var(--ease-smooth);
       backdrop-filter: blur(8px);
     }
     .skill-card::before {
@@ -411,10 +514,22 @@
       height: 2px;
       background: rgba(255, 255, 255, 0.15);
       opacity: 0;
-      transition: opacity 0.35s var(--ease-smooth);
+      transition: opacity 0.5s var(--ease-smooth);
+    }
+    .skill-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.04) 50%, transparent 60%);
+      transform: translateX(-100%);
+      pointer-events: none;
+      border-radius: var(--radius-lg);
+    }
+    .skill-card:hover::after {
+      animation: cardShine 1s var(--ease-premium);
     }
     .skill-card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-6px) scale(1.02);
       border-color: var(--border-hover);
       box-shadow: var(--shadow-mat-hover);
     }
@@ -489,9 +604,9 @@
       height: 100%;
       background: linear-gradient(90deg, #404040, #525252);
       border-radius: 999px;
-      transition: width 1s var(--ease-out-expo);
+      transition: width 1.4s var(--ease-premium);
     }
-    .reveal.visible .skill-bar-fill { transition: width 1s var(--ease-out-expo) 0.25s; }
+    .reveal.visible .skill-bar-fill { transition: width 1.4s var(--ease-premium) 0.4s; }
 
     .portfolio-featured-by {
       display: flex;
@@ -546,12 +661,29 @@
       width: 2px;
       background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.06) 100%);
       border-radius: 2px;
+      transform: scaleY(0);
+      transform-origin: top;
+    }
+    .reveal.visible .timeline::before {
+      animation: lineGrow 1.4s var(--ease-premium) 0.5s forwards;
     }
     .timeline-item {
       position: relative;
       padding-bottom: 2.5rem;
+      opacity: 0;
     }
     .timeline-item:last-child { padding-bottom: 0; }
+    .reveal.visible .timeline-item {
+      animation: fadeUpScale 0.8s var(--ease-premium) forwards;
+    }
+    .reveal.visible .timeline-item:nth-child(1) { animation-delay: 0.7s; }
+    .reveal.visible .timeline-item:nth-child(2) { animation-delay: 0.9s; }
+    .reveal.visible .timeline-item:nth-child(3) { animation-delay: 1.1s; }
+    .reveal.visible .timeline-item:nth-child(4) { animation-delay: 1.3s; }
+    .reveal.visible .timeline-item:nth-child(5) { animation-delay: 1.5s; }
+    .reveal.visible .timeline-item:nth-child(6) { animation-delay: 1.7s; }
+    .reveal.visible .timeline-item:nth-child(7) { animation-delay: 1.9s; }
+    .reveal.visible .timeline-item:nth-child(8) { animation-delay: 2.1s; }
     .timeline-dot {
       position: absolute;
       left: -2rem;
@@ -601,11 +733,25 @@
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       padding: 1.5rem;
-      transition: transform 0.4s var(--ease-out-expo), border-color 0.35s var(--ease-smooth), box-shadow 0.4s var(--ease-smooth);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.55s var(--ease-premium), border-color 0.5s var(--ease-smooth), box-shadow 0.55s var(--ease-smooth);
       backdrop-filter: blur(8px);
     }
+    .portfolio-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.03) 50%, transparent 60%);
+      transform: translateX(-100%);
+      pointer-events: none;
+      border-radius: var(--radius-lg);
+    }
+    .portfolio-card:hover::after {
+      animation: cardShine 1s var(--ease-premium);
+    }
     .portfolio-card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-6px) scale(1.02);
       border-color: var(--border-hover);
       box-shadow: var(--shadow-mat-hover);
     }
@@ -668,7 +814,7 @@
       border-radius: 16px;
       color: var(--text);
       font-weight: 500;
-      transition: border-color 0.35s var(--ease-smooth), color 0.35s var(--ease-smooth), transform 0.35s var(--ease-out-expo), background 0.35s var(--ease-smooth);
+      transition: border-color 0.5s var(--ease-smooth), color 0.5s var(--ease-smooth), transform 0.5s var(--ease-premium), background 0.5s var(--ease-smooth);
       backdrop-filter: blur(8px);
     }
     .contact-links a:hover {
@@ -691,7 +837,7 @@
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       padding: 1.5rem;
-      transition: border-color 0.35s var(--ease-smooth), box-shadow 0.4s var(--ease-smooth);
+      transition: border-color 0.5s var(--ease-smooth), box-shadow 0.55s var(--ease-premium);
       backdrop-filter: blur(8px);
     }
     .education-card:hover { border-color: var(--border-hover); box-shadow: var(--shadow-mat-hover); }
@@ -707,7 +853,7 @@
       border-radius: var(--radius-lg);
       padding: 1.25rem 1.5rem;
       margin-bottom: 1rem;
-      transition: border-color 0.35s var(--ease-smooth), box-shadow 0.4s var(--ease-smooth);
+      transition: border-color 0.5s var(--ease-smooth), box-shadow 0.55s var(--ease-premium);
       backdrop-filter: blur(8px);
     }
     .achievement-item:hover { border-color: var(--border-hover); box-shadow: var(--shadow-mat-hover); }
@@ -724,6 +870,11 @@
       color: var(--text-muted);
     }
     .contact-location { font-family: var(--font-mono); font-size: 0.9rem; color: var(--text-muted); margin-top: 1rem; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+      .hero-orb { animation: none; }
+    }
   </style>
 </head>
 <body>
