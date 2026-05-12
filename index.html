@@ -290,6 +290,10 @@
       object-fit: cover;
       aspect-ratio: 1;
     }
+    .hero-stat {
+      flex: 1 1 200px;
+      min-width: 0;
+    }
     .hero-stats {
       display: flex;
       flex-wrap: wrap;
@@ -309,11 +313,16 @@
       letter-spacing: -0.02em;
     }
     .hero-stat span {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      font-weight: 500;
       color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+      text-transform: none;
+      letter-spacing: 0.01em;
+      line-height: 1.45;
+      max-width: 15rem;
+      display: block;
+      margin-top: 0.35rem;
     }
     .hero-badge {
       display: inline-flex;
@@ -535,6 +544,9 @@
     .reveal.visible .education-grid .education-card:nth-child(2) { animation-delay: 0.65s; }
     .reveal.visible .achievements-list .achievement-item:nth-child(1) { animation-delay: 0.4s; }
     .reveal.visible .achievements-list .achievement-item:nth-child(2) { animation-delay: 0.65s; }
+    .reveal.visible #speaking .achievements-list .achievement-item:nth-child(1) { animation-delay: 0.35s; }
+    .reveal.visible #speaking .achievements-list .achievement-item:nth-child(2) { animation-delay: 0.5s; }
+    .reveal.visible #speaking .achievements-list .achievement-item:nth-child(3) { animation-delay: 0.65s; }
     .reveal.visible .contact-links a { opacity: 0; animation: fadeUpScale 0.75s var(--ease-premium) forwards; }
     .reveal.visible .contact-links a:nth-child(1) { animation-delay: 0.35s; }
     .reveal.visible .contact-links a:nth-child(2) { animation-delay: 0.5s; }
@@ -1057,6 +1069,7 @@
       <li><a href="#experience">Experience</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#speaking">Speaking</a></li>
       <li><a href="#featured">Featured</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -1090,8 +1103,10 @@
           <a href="https://www.linkedin.com/in/jerry-adams-franklin/" class="btn btn-outline" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
         <div class="hero-stats">
-          <div class="hero-stat"><strong>5+</strong><span>Years experience</span></div>
-          <div class="hero-stat"><strong>300+</strong><span>Deals analyzed</span></div>
+          <div class="hero-stat"><strong>$450K+</strong><span>AI-informed investment outcomes led through VCScout-AI at DCG</span></div>
+          <div class="hero-stat"><strong>EthCC</strong><span>Invited talk in Brussels on decentralized AI and federated learning on the FLock network</span></div>
+          <div class="hero-stat"><strong>NEARCON</strong><span>Lightning talk on training 7B LLMs on edge devices (NEAR Foundation, San Francisco)</span></div>
+          <div class="hero-stat"><strong>Intel</strong><span>AIA Division Achievement Award for TensorFlow on Windows</span></div>
         </div>
         <div class="hero-divider"></div>
         <div class="hero-companies-wrap">
@@ -1112,15 +1127,16 @@
     <h2 class="section-title">Building AI that decides, not just predicts.</h2>
     <div class="about-grid">
       <div class="about-text">
-        <p>I'm a Senior AI Engineer at Digital Currency Group, where I architect intelligent, decentralized AI systems that power real-world decisions. I specialize in building production-ready AI agents powered by large language models like Qwen, LLaMA, Gemma, and Phi, orchestrated with LangChain, LangGraph, and Weaviate vector search.</p>
+        <p>I'm a Senior AI Engineer at Digital Currency Group, where I architect intelligent, decentralized AI systems that power real-world decisions. I specialize in production-ready AI agents with models like Qwen, LLaMA, Gemma, and Phi, orchestrated with LangChain, LangGraph, and Weaviate vector search, plus RAG, evaluation, and serving patterns used in production.</p>
         <p>One of my proudest projects is VCScout-AI, an end-to-end autonomous agent that analyzed 300+ startup deals and directly drove $450K+ in AI-informed investments. My work spans federated learning, blockchain-integrated ML, and fine-tuning LLMs for high-stakes domains like financial trading and smart contract security.</p>
+        <p>I speak at conferences such as EthCC and NEARCON, guest-lecture at universities (including VIT-AP on production AI and LLM careers), and mentor at nonprofit hackathons like Opportunity Hack with Women in Computer Science at ASU, helping teams ship AI for real nonprofits in 24 hours.</p>
         <p>Before DCG, I led TensorFlow CPU performance optimization at Intel, improving core operations significantly and earning the Division Achievement Award. I hold a Master's in Data Science from Northeastern University.</p>
         <p>Welcome to my world. Grab a paddle; the AI waters are deep, and we're going swimming.</p>
       </div>
       <div class="about-stats">
         <div class="stat-card"><div class="num">5+</div><div class="label">Years Experience</div></div>
         <div class="stat-card"><div class="num">$450K+</div><div class="label">AI-driven Investments</div></div>
-        <div class="stat-card"><div class="num">300+</div><div class="label">Deals Analyzed</div></div>
+        <div class="stat-card"><div class="num">7x</div><div class="label">Top FLock tasks</div></div>
         <div class="stat-card"><div class="num">Top 1</div><div class="label">FLock AI Arena</div></div>
       </div>
     </div>
@@ -1154,14 +1170,14 @@
         <div class="icon">🧠</div>
         <h3>LLMs & Generative AI</h3>
         <div class="skill-tags">
-          <span>Qwen</span><span>LLaMA</span><span>Gemma</span><span>Phi</span><span>Fine-tuning</span><span>LoRA</span><span>QLoRA</span><span>PEFT</span><span>RLHF</span>
+          <span>Qwen</span><span>LLaMA</span><span>Gemma</span><span>Phi</span><span>Fine-tuning</span><span>LoRA</span><span>QLoRA</span><span>PEFT</span><span>RLHF</span><span>vLLM</span>
         </div>
       </div>
       <div class="skill-card">
         <div class="icon">🔗</div>
         <h3>Agentic AI & RAG</h3>
         <div class="skill-tags">
-          <span>LangChain</span><span>LangGraph</span><span>Weaviate</span><span>Vector DB</span><span>Tool Use</span><span>ReAct</span>
+          <span>LangChain</span><span>LangGraph</span><span>Weaviate</span><span>Vector DB</span><span>PydanticAI</span><span>Tool Use</span><span>ReAct</span>
         </div>
       </div>
       <div class="skill-card">
@@ -1207,8 +1223,8 @@
         <ul class="timeline-bullets">
           <li>Architected and scaled decentralized AI systems on the FLock Network using Federated ML; forged strategic collaborations with Animoca Brands, Pundi AI, Chasm, and OneKey to build LLM-powered agents for VC analysis, financial trading, sports analytics, and smart contract security.</li>
           <li>Spearheaded fine-tuning of LLMs (Qwen, LLaMA, Gemma, Phi) and engineered a resilient ML pipeline using Argo CD, GKE (H100 GPUs), MLFlow, Helm, and Pub/Sub for scalable, production-grade training and inference.</li>
-          <li>Conceived and launched VCScout-AI, a LangChain-based agentic pipeline leveraging Qwen-7B and Weaviate Vector DB to analyze 300+ startup deals, directly driving $450K+ in AI-informed investment decisions.</li>
-          <li>Recognized as Top AI Arena performer and featured at EthCC Brussels; highlighted in the official FLock blog interview and tweet.</li>
+          <li>Designed and deployed VCScout-AI, a LangChain-based agentic RAG pipeline with Qwen-7B, Weaviate vector search, and custom evaluation frameworks to analyze 300+ startup deals, directly driving $450K+ in AI-informed investment decisions.</li>
+          <li>Recognized as Top AI Arena performer; invited speaker at EthCC (Brussels) and NEARCON 2026 (San Francisco), including a lightning talk on training 7B LLMs on edge devices. Featured in the official FLock blog interview and tweet.</li>
         </ul>
       </div>
       <div class="timeline-item">
@@ -1217,8 +1233,8 @@
         <div class="timeline-role">AI/ML Engineer</div>
         <div class="timeline-company">Foundry Digital</div>
         <ul class="timeline-bullets">
-          <li>Spearheaded innovative projects utilizing the FLock Network and Federated ML to revolutionize decentralized ML models on blockchain; achieved top-performing model status five times across the network for four distinct cases, resulting in significant FML token accumulation for Foundry.</li>
-          <li>Captured 1st place in two major hackathons and 2nd in another; led a workshop at RIT on Machine Learning in Crypto, training and deploying models on FLock and Akash Network.</li>
+          <li>Spearheaded federated ML on the FLock network for decentralized models on chain; achieved top-performing status seven times across distinct tasks, with 1st place in two major ML hackathons and 2nd in another; mentored junior engineers on MLOps and model serving.</li>
+          <li>Led a technical workshop at RIT on Machine Learning in Crypto, training and deploying production models on FLock and Akash Network.</li>
           <li>Featured in FLock interviews highlighting innovative work in the network.</li>
         </ul>
       </div>
@@ -1239,7 +1255,7 @@
         <div class="timeline-company">Intel Corporation</div>
         <ul class="timeline-bullets">
           <li>Optimized TensorFlow on Windows and pioneered an MLOps framework to streamline automation and acceleration of Neural Network benchmark performance on various Intel CPUs.</li>
-          <li>Enhanced Convolution Operations performance by 400% utilizing OneDNN; validated and addressed issues/bugs within TensorFlow CPU.</li>
+          <li>Enhanced convolution operations inference latency by 400% using OneDNN; triaged and resolved critical TensorFlow CPU issues to production readiness.</li>
           <li>Built and released the TensorFlow binary to the worldwide TensorFlow community in collaboration with Google, achieving 10,000 downloads for TF 2.11 in a single day.</li>
         </ul>
       </div>
@@ -1267,7 +1283,7 @@
         <div class="timeline-role">Graduate Teaching Assistant</div>
         <div class="timeline-company">Northeastern University</div>
         <ul class="timeline-bullets">
-          <li>Taught Python, Machine Learning, and Data Analysis to 250 students; led business practicum workshops and graded assignments.</li>
+          <li>Taught Python, Machine Learning, and Data Analysis to 250 students; led practicum workshops on model development and evaluation; mentored student teams on applied ML projects.</li>
         </ul>
       </div>
       <div class="timeline-item">
@@ -1310,6 +1326,25 @@
       <a href="https://www.linkedin.com/in/jerry-adams-franklin/overlay/1635555036131/single-media-viewer/?profileId=ACoAACnkCCsBT722Vw_kHd1OX1cbKCfjjyGC5ls" target="_blank" rel="noopener noreferrer" class="achievement-item">
         <div class="title">AIA Division Achievement Award, Intel <span class="date">Nov 2022</span></div>
         <p class="desc">Recognition for the TensorFlow Windows project, leading to Intel's ownership of the TensorFlow CPU build from Google and the first successful release for the Windows ecosystem.</p>
+      </a>
+    </div>
+  </section>
+
+  <section id="speaking" class="reveal">
+    <p class="section-label">// Speaking & mentoring</p>
+    <h2 class="section-title">Stages, classrooms, and hackathons</h2>
+    <div class="achievements-list">
+      <a href="https://www.youtube.com/watch?v=qqr9qN8G7e0" target="_blank" rel="noopener noreferrer" class="achievement-item">
+        <div class="title">NEARCON 2026, San Francisco <span class="date">Feb 2026</span></div>
+        <p class="desc">Lightning talk on training 7B LLMs on edge devices at the NEAR Foundation conference (Fort Mason), alongside speakers from PyTorch, Gensyn, Akash Network, and Hyperbolic Labs.</p>
+      </a>
+      <a href="https://www.linkedin.com/feed/update/urn:li:activity:7449986053601427457/" target="_blank" rel="noopener noreferrer" class="achievement-item">
+        <div class="title">Guest lecture, VIT-AP University <span class="date">2026</span></div>
+        <p class="desc">Two-hour session for the School of Computer Science and Engineering on production AI: how LLMs are built and deployed, LoRA and QLoRA, why most models never leave the notebook, and a walkthrough of a production system from DCG.</p>
+      </a>
+      <a href="https://www.linkedin.com/feed/update/urn:li:activity:7444474624110845953/" target="_blank" rel="noopener noreferrer" class="achievement-item">
+        <div class="title">Mentor, WiCS at ASU x Opportunity Hack <span class="date">Spring 2026</span></div>
+        <p class="desc">Mentored university teams building real tools for nonprofits in 24 hours: AI architecture, LLM APIs, data modeling, and scoping so teams could ship. Hosted with Women in Computer Science at Arizona State University and Opportunity Hack.</p>
       </a>
     </div>
   </section>
