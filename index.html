@@ -10,13 +10,16 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0a0a0a;
-      --bg-elevated: #111111;
-      --bg-card: #141414;
-      --border: rgba(255, 255, 255, 0.06);
-      --border-hover: rgba(255, 255, 255, 0.12);
+      --bg: #080808;
+      --bg-elevated: #0f0f0f;
+      --bg-card: #121212;
+      --border: rgba(255, 255, 255, 0.07);
+      --border-hover: rgba(249, 115, 22, 0.35);
+      --brand: #f97316;
+      --brand-hover: #fb923c;
+      --brand-muted: rgba(249, 115, 22, 0.15);
       --accent: #e5e5e5;
-      --accent-dim: rgba(255, 255, 255, 0.6);
+      --accent-dim: rgba(255, 255, 255, 0.55);
       --green: #a3a3a3;
       --amber: #d4d4d4;
       --rose: #a3a3a3;
@@ -50,7 +53,9 @@
       content: '';
       position: fixed;
       inset: 0;
-      background: radial-gradient(ellipse 100% 80% at 50% 0%, rgba(255, 255, 255, 0.02), transparent 60%);
+      background:
+        radial-gradient(ellipse 70% 50% at 85% 15%, rgba(249, 115, 22, 0.12), transparent 55%),
+        radial-gradient(ellipse 100% 80% at 50% 0%, rgba(255, 255, 255, 0.02), transparent 60%);
       pointer-events: none;
       z-index: 0;
     }
@@ -65,7 +70,7 @@
     }
 
     a { color: var(--accent); text-decoration: none; transition: color 0.3s var(--ease-smooth); }
-    a:hover { color: var(--text); }
+    a:hover { color: var(--brand-hover); }
 
     /* ----- Navigation ----- */
     .nav {
@@ -76,9 +81,9 @@
       z-index: 1000;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 1.25rem 2rem;
-      background: rgba(10, 10, 10, 0.85);
+      justify-content: flex-start;
+      gap: 1.5rem;
+      background: rgba(8, 8, 8, 0.88);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid transparent;
@@ -87,15 +92,8 @@
     .nav.scrolled {
       padding: 0.75rem 2rem;
       border-bottom-color: var(--border);
-      background: rgba(10, 10, 10, 0.95);
+      background: rgba(8, 8, 8, 0.96);
     }
-    .nav-logo {
-      font-family: var(--font-mono);
-      font-weight: 600;
-      font-size: 1.25rem;
-      letter-spacing: -0.02em;
-    }
-    .nav-logo .dim { color: var(--text-muted); font-weight: 400; opacity: 0.8; }
     .nav-links {
       display: flex;
       gap: 2rem;
@@ -115,11 +113,11 @@
       left: 0;
       width: 0;
       height: 1px;
-      background: var(--text);
+      background: var(--brand);
       transition: width 0.6s var(--ease-premium);
     }
     .nav-links a:hover { color: var(--text); }
-    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:hover::after { width: 100%; background: var(--brand); }
     .nav-toggle {
       display: none;
       background: none;
@@ -131,8 +129,20 @@
     }
     .nav-toggle svg { width: 24px; height: 24px; }
 
+    @media (min-width: 769px) {
+      .nav { display: flex; align-items: center; gap: 1.5rem; }
+      .nav-toggle { display: none !important; }
+      .nav-links {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1.25rem 2rem;
+      }
+    }
     @media (max-width: 768px) {
-      .nav-toggle { display: block; }
+      .nav { justify-content: space-between; flex-wrap: wrap; }
+      .nav-toggle { display: block; margin-left: auto; }
       .nav-links {
         position: absolute;
         top: 100%;
@@ -141,7 +151,7 @@
         flex-direction: column;
         gap: 0;
         padding: 1rem 2rem;
-        background: rgba(10, 10, 10, 0.98);
+        background: rgba(8, 8, 8, 0.98);
         backdrop-filter: blur(24px);
         border-bottom: 1px solid var(--border);
         max-height: 0;
@@ -163,9 +173,8 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: calc(var(--nav-height) + 3rem) 2rem 4rem;
+      align-items: stretch;
+      padding: calc(var(--nav-height) + 2.5rem) 2rem 4rem;
       position: relative;
       overflow: hidden;
     }
@@ -183,19 +192,19 @@
     }
     .hero-orb:nth-child(1) {
       width: 400px; height: 400px;
-      background: #1a1a1a;
+      background: rgba(249, 115, 22, 0.12);
       top: 10%; left: 20%;
       animation-delay: 0s;
     }
     .hero-orb:nth-child(2) {
       width: 350px; height: 350px;
-      background: #151515;
+      background: rgba(249, 115, 22, 0.08);
       top: 50%; right: 10%;
       animation-delay: -4s;
     }
     .hero-orb:nth-child(3) {
       width: 300px; height: 300px;
-      background: #1a1a1a;
+      background: #151515;
       bottom: 15%; left: 30%;
       animation-delay: -8s;
     }
@@ -204,7 +213,90 @@
       33% { transform: translate(15px, -15px) scale(1.02); }
       66% { transform: translate(-10px, 10px) scale(0.98); }
     }
-    .hero-content { position: relative; z-index: 1; max-width: 720px; }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr minmax(260px, 38%);
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: center;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: left;
+      max-width: 640px;
+    }
+    .hero-visual {
+      position: relative;
+      justify-self: end;
+      width: 100%;
+      max-width: 420px;
+    }
+    .hero-frame {
+      position: relative;
+      padding: 12px;
+      border: 2px solid var(--brand);
+      border-radius: 4px;
+      background: linear-gradient(145deg, rgba(249, 115, 22, 0.08), transparent 40%);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+    }
+    .hero-frame::before {
+      content: '';
+      position: absolute;
+      inset: -20px -12px auto auto;
+      width: 55%;
+      height: 45%;
+      border: 2px solid rgba(249, 115, 22, 0.35);
+      border-radius: 4px;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .hero-photo {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 2px;
+      object-fit: cover;
+      aspect-ratio: 1;
+    }
+    .hero-stat {
+      flex: 1 1 200px;
+      min-width: 0;
+    }
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem 2.5rem;
+      margin-top: 2rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid var(--border);
+      animation: fadeUp 1s var(--ease-premium) 1.15s forwards;
+      opacity: 0;
+    }
+    .hero-stat strong {
+      display: block;
+      font-size: 1.65rem;
+      font-weight: 800;
+      font-family: var(--font-sans);
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+    .hero-stat span {
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: none;
+      letter-spacing: 0.01em;
+      line-height: 1.45;
+      max-width: 15rem;
+      display: block;
+      margin-top: 0.35rem;
+    }
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -221,40 +313,51 @@
     }
     .hero-badge-dot {
       width: 8px; height: 8px;
-      background: var(--text-muted);
+      background: var(--brand);
       border-radius: 50%;
       animation: pulse 2.5s ease-in-out infinite;
     }
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
+    .hero-name {
+      font-size: clamp(2.5rem, 6.5vw, 3.9rem);
+      font-weight: 500;
+      line-height: 1.08;
+      letter-spacing: -0.035em;
       margin-bottom: 1rem;
       animation: fadeUpScale 1.1s var(--ease-premium) 0.25s forwards;
       opacity: 0;
+      color: var(--text);
     }
-    .hero h1 .gradient {
-      background: linear-gradient(135deg, #fafafa 0%, #d4d4d4 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .hero-name-line {
+      display: block;
+    }
+    .hero-name-intro {
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+    .hero-name strong {
+      font-weight: 800;
+      color: var(--brand);
+      -webkit-text-fill-color: var(--brand);
     }
     .hero-tagline {
       font-family: var(--font-mono);
-      font-size: 0.9rem;
+      font-size: clamp(1.02rem, 2.1vw, 1.2rem);
+      font-weight: 500;
       color: var(--text-muted);
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.85rem;
+      line-height: 1.45;
+      max-width: 40rem;
       animation: fadeUp 1s var(--ease-premium) 0.55s forwards;
       opacity: 0;
     }
     .hero-subtitle {
-      font-size: 1.15rem;
+      font-size: clamp(0.9rem, 1.65vw, 1.02rem);
       font-weight: 400;
       color: var(--text-muted);
-      max-width: 580px;
-      margin: 0 auto 2rem;
+      max-width: 34rem;
+      margin: 0 0 2rem;
+      line-height: 1.55;
       animation: fadeUp 1s var(--ease-premium) 0.8s forwards;
       opacity: 0;
     }
@@ -286,8 +389,8 @@
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
-      justify-content: center;
-      margin-bottom: 2.5rem;
+      justify-content: flex-start;
+      margin-bottom: 0;
       animation: fadeUp 1s var(--ease-premium) 1.05s forwards;
       opacity: 0;
     }
@@ -306,29 +409,33 @@
     .btn:hover { transform: translateY(-3px) scale(1.02); }
 .btn:active { transform: translateY(-1px) scale(0.99); }
     .btn-primary {
-      background: #fafafa;
-      color: #0a0a0a;
+      background: var(--brand);
+      color: #0c0c0c;
       border: none;
-      box-shadow: var(--shadow-mat);
+      box-shadow: 0 8px 28px rgba(249, 115, 22, 0.28);
     }
-    .btn-primary:hover { box-shadow: var(--shadow-mat-hover); }
+    .btn-primary:hover {
+      background: var(--brand-hover);
+      box-shadow: 0 12px 36px rgba(249, 115, 22, 0.35);
+    }
     .btn-outline {
       background: transparent;
       color: var(--text);
-      border: 1px solid var(--border);
+      border: 1px solid rgba(255, 255, 255, 0.28);
     }
-    .btn-outline:hover { border-color: var(--border-hover); color: var(--text); background: var(--bg-card); }
+    .btn-outline:hover { border-color: var(--brand); color: var(--text); background: rgba(249, 115, 22, 0.08); }
     .hero-divider {
       width: 120px;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border), transparent);
-      margin: 0 auto 1rem;
+      background: linear-gradient(90deg, var(--brand), transparent);
+      margin: 2rem 0 1rem;
       animation: fadeUp 1s var(--ease-premium) 1.35s forwards;
       opacity: 0;
     }
     .hero-companies-wrap {
       animation: fadeUp 1s var(--ease-premium) 1.55s forwards;
       opacity: 0;
+      text-align: left;
     }
     .hero-companies-label {
       font-family: var(--font-mono);
@@ -344,6 +451,19 @@
       color: var(--text-muted);
     }
 
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-content { text-align: center; max-width: none; margin: 0 auto; }
+      .hero-buttons { justify-content: center; }
+      .hero-divider { margin-left: auto; margin-right: auto; }
+      .hero-companies-wrap { text-align: center; }
+      .hero-visual { justify-self: center; max-width: 340px; margin-top: 1.5rem; order: -1; }
+      .hero-content { order: 0; }
+    }
+
     /* ----- Sections common ----- */
     section {
       padding: 5rem 2rem;
@@ -355,7 +475,7 @@
     .section-label {
       font-family: var(--font-mono);
       font-size: 0.88rem;
-      color: var(--accent-dim);
+      color: var(--brand);
       margin-bottom: 0.5rem;
       letter-spacing: 0.08em;
     }
@@ -409,6 +529,9 @@
     .reveal.visible .education-grid .education-card:nth-child(2) { animation-delay: 0.65s; }
     .reveal.visible .achievements-list .achievement-item:nth-child(1) { animation-delay: 0.4s; }
     .reveal.visible .achievements-list .achievement-item:nth-child(2) { animation-delay: 0.65s; }
+    .reveal.visible #speaking .achievements-list .achievement-item:nth-child(1) { animation-delay: 0.35s; }
+    .reveal.visible #speaking .achievements-list .achievement-item:nth-child(2) { animation-delay: 0.5s; }
+    .reveal.visible #speaking .achievements-list .achievement-item:nth-child(3) { animation-delay: 0.65s; }
     .reveal.visible .contact-links a { opacity: 0; animation: fadeUpScale 0.75s var(--ease-premium) forwards; }
     .reveal.visible .contact-links a:nth-child(1) { animation-delay: 0.35s; }
     .reveal.visible .contact-links a:nth-child(2) { animation-delay: 0.5s; }
@@ -602,7 +725,7 @@
     }
     .skill-bar-fill {
       height: 100%;
-      background: linear-gradient(90deg, #404040, #525252);
+      background: linear-gradient(90deg, #ea580c, #f97316);
       border-radius: 999px;
       transition: width 1.4s var(--ease-premium);
     }
@@ -688,7 +811,7 @@
     }
     a.timeline-item {
       cursor: pointer;
-      box-shadow: inset 3px 0 0 rgba(255, 255, 255, 0.2);
+      box-shadow: inset 3px 0 0 rgba(249, 115, 22, 0.55);
       border-radius: 0 8px 8px 0;
     }
     .timeline-item:last-child { padding-bottom: 0; }
@@ -714,8 +837,8 @@
       border: 2px solid var(--border);
     }
     .timeline-item:first-child .timeline-dot {
-      background: rgba(255, 255, 255, 0.9);
-      border-color: rgba(255, 255, 255, 0.3);
+      background: rgba(249, 115, 22, 0.35);
+      border-color: rgba(249, 115, 22, 0.55);
     }
     .timeline-date {
       font-family: var(--font-mono);
@@ -779,10 +902,10 @@
     }
     a.portfolio-card {
       cursor: pointer;
-      box-shadow: inset 3px 0 0 rgba(255, 255, 255, 0.2);
+      box-shadow: inset 3px 0 0 rgba(249, 115, 22, 0.55);
     }
     a.portfolio-card:hover {
-      box-shadow: inset 3px 0 0 rgba(255, 255, 255, 0.28), var(--shadow-mat-hover);
+      box-shadow: inset 3px 0 0 rgba(249, 115, 22, 0.85), var(--shadow-mat-hover);
     }
     .portfolio-tag {
       display: inline-block;
@@ -847,10 +970,10 @@
       backdrop-filter: blur(8px);
     }
     .contact-links a:hover {
-      border-color: var(--border-hover);
+      border-color: rgba(249, 115, 22, 0.45);
       color: var(--text);
       transform: translateY(-3px);
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(249, 115, 22, 0.06);
       box-shadow: var(--shadow-mat-hover);
     }
     .contact-links a svg { width: 20px; height: 20px; flex-shrink: 0; }
@@ -874,10 +997,10 @@
     }
     a.education-card {
       cursor: pointer;
-      box-shadow: inset 3px 0 0 rgba(255, 255, 255, 0.2);
+      box-shadow: inset 3px 0 0 rgba(249, 115, 22, 0.55);
     }
     .education-card:hover { border-color: var(--border-hover); box-shadow: var(--shadow-mat-hover); }
-    a.education-card:hover { box-shadow: inset 3px 0 0 rgba(255, 255, 255, 0.25), var(--shadow-mat-hover); }
+    a.education-card:hover { box-shadow: inset 3px 0 0 rgba(249, 115, 22, 0.85), var(--shadow-mat-hover); }
     .education-card .school { font-weight: 700; font-size: 1.1rem; margin-bottom: 0.25rem; }
     .education-card .degree { color: var(--text-muted); font-family: var(--font-mono); font-size: 0.95rem; }
     .education-card .meta { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; }
@@ -898,10 +1021,10 @@
     }
     a.achievement-item {
       cursor: pointer;
-      box-shadow: inset 3px 0 0 rgba(255, 255, 255, 0.2);
+      box-shadow: inset 3px 0 0 rgba(249, 115, 22, 0.55);
     }
     .achievement-item:hover { border-color: var(--border-hover); box-shadow: var(--shadow-mat-hover); }
-    a.achievement-item:hover { box-shadow: inset 3px 0 0 rgba(255, 255, 255, 0.25), var(--shadow-mat-hover); }
+    a.achievement-item:hover { box-shadow: inset 3px 0 0 rgba(249, 115, 22, 0.85), var(--shadow-mat-hover); }
     .achievement-item .title { font-weight: 700; margin-bottom: 0.35rem; }
     .achievement-item .title .date { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
     .achievement-item .desc { color: var(--text-muted); font-size: 0.95rem; }
@@ -924,20 +1047,20 @@
 </head>
 <body>
   <nav class="nav" id="nav">
-    <a href="#" class="nav-logo">jerryadamsfranklin<span class="dim">.dev</span></a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-    </button>
     <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#speaking">Speaking</a></li>
       <li><a href="#featured">Featured</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
   </nav>
 
   <header class="hero">
@@ -946,28 +1069,41 @@
       <div class="hero-orb"></div>
       <div class="hero-orb"></div>
     </div>
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span class="hero-badge-dot"></span>
-        Open to opportunities
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Open to opportunities
+        </div>
+        <h1 class="hero-name">
+          <span class="hero-name-line"><span class="hero-name-intro">I'm</span> <strong>Jerry Adams</strong></span>
+          <span class="hero-name-line"><strong>Franklin.</strong></span>
+        </h1>
+        <p class="hero-tagline">Senior AI Engineer @ Digital Currency Group · Deep Learning Engineer @ Intel · Ex Data Scientist @ Nokia</p>
+        <p class="hero-subtitle">
+          Building production-grade intelligent systems, from fine-tuning LLMs and orchestrating AI agents to shipping decentralized ML at scale.
+        </p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn btn-primary">Get in Touch</a>
+          <a href="https://github.com/jerryadamsfranklin" class="btn btn-outline" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/jerry-adams-franklin/" class="btn btn-outline" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><strong>$450K+</strong><span>AI-informed investment outcomes led through VCScout-AI at DCG</span></div>
+          <div class="hero-stat"><strong>EthCC</strong><span>Invited talk in Brussels on decentralized AI and federated learning on the FLock network</span></div>
+          <div class="hero-stat"><strong>NEARCON</strong><span>Lightning talk on training 7B LLMs on edge devices (NEAR Foundation, San Francisco)</span></div>
+          <div class="hero-stat"><strong>Intel</strong><span>AIA Division Achievement Award for TensorFlow on Windows</span></div>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-companies-wrap">
+          <div class="hero-companies-label">Experience at</div>
+          <div class="hero-companies">Digital Currency Group, Intel, Nokia, Foundry Digital, OneBill</div>
+        </div>
       </div>
-      <h1>
-        I'm Jerry Adams<br>
-        <span class="gradient">Franklin.</span>
-      </h1>
-      <p class="hero-tagline">Senior AI Engineer @ Digital Currency Group · Deep Learning Engineer @ Intel · Ex Data Scientist @ Nokia</p>
-      <p class="hero-subtitle">
-        Building production-grade intelligent systems, from fine-tuning LLMs and orchestrating AI agents to shipping decentralized ML at scale.
-      </p>
-      <div class="hero-buttons">
-        <a href="#contact" class="btn btn-primary">Get in Touch</a>
-        <a href="https://github.com/jerryadamsfranklin" class="btn btn-outline" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="https://www.linkedin.com/in/jerry-adams-franklin/" class="btn btn-outline" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      </div>
-      <div class="hero-divider"></div>
-      <div class="hero-companies-wrap">
-        <div class="hero-companies-label">Experience at</div>
-        <div class="hero-companies">Digital Currency Group, Intel, Nokia, Foundry Digital, OneBill</div>
+      <div class="hero-visual">
+        <div class="hero-frame">
+          <img src="assets/profile.png" alt="Jerry Adams Franklin" class="hero-photo" width="640" height="640" loading="eager" decoding="async">
+        </div>
       </div>
     </div>
   </header>
@@ -977,15 +1113,16 @@
     <h2 class="section-title">Building AI that decides, not just predicts.</h2>
     <div class="about-grid">
       <div class="about-text">
-        <p>I'm a Senior AI Engineer at Digital Currency Group, where I architect intelligent, decentralized AI systems that power real-world decisions. I specialize in building production-ready AI agents powered by large language models like Qwen, LLaMA, Gemma, and Phi, orchestrated with LangChain, LangGraph, and Weaviate vector search.</p>
+        <p>I'm a Senior AI Engineer at Digital Currency Group, where I architect intelligent, decentralized AI systems that power real-world decisions. I specialize in production-ready AI agents with models like Qwen, LLaMA, Gemma, and Phi, orchestrated with LangChain, LangGraph, and Weaviate vector search, plus RAG, evaluation, and serving patterns used in production.</p>
         <p>One of my proudest projects is VCScout-AI, an end-to-end autonomous agent that analyzed 300+ startup deals and directly drove $450K+ in AI-informed investments. My work spans federated learning, blockchain-integrated ML, and fine-tuning LLMs for high-stakes domains like financial trading and smart contract security.</p>
+        <p>I speak at conferences such as EthCC and NEARCON, guest-lecture at universities (including VIT-AP on production AI and LLM careers), and mentor at nonprofit hackathons like Opportunity Hack with Women in Computer Science at ASU, helping teams ship AI for real nonprofits in 24 hours.</p>
         <p>Before DCG, I led TensorFlow CPU performance optimization at Intel, improving core operations significantly and earning the Division Achievement Award. I hold a Master's in Data Science from Northeastern University.</p>
         <p>Welcome to my world. Grab a paddle; the AI waters are deep, and we're going swimming.</p>
       </div>
       <div class="about-stats">
         <div class="stat-card"><div class="num">5+</div><div class="label">Years Experience</div></div>
         <div class="stat-card"><div class="num">$450K+</div><div class="label">AI-driven Investments</div></div>
-        <div class="stat-card"><div class="num">300+</div><div class="label">Deals Analyzed</div></div>
+        <div class="stat-card"><div class="num">7x</div><div class="label">Top FLock tasks</div></div>
         <div class="stat-card"><div class="num">Top 1</div><div class="label">FLock AI Arena</div></div>
       </div>
     </div>
@@ -1019,14 +1156,14 @@
         <div class="icon">🧠</div>
         <h3>LLMs & Generative AI</h3>
         <div class="skill-tags">
-          <span>Qwen</span><span>LLaMA</span><span>Gemma</span><span>Phi</span><span>Fine-tuning</span><span>LoRA</span><span>QLoRA</span><span>PEFT</span><span>RLHF</span>
+          <span>Qwen</span><span>LLaMA</span><span>Gemma</span><span>Phi</span><span>Fine-tuning</span><span>LoRA</span><span>QLoRA</span><span>PEFT</span><span>RLHF</span><span>vLLM</span>
         </div>
       </div>
       <div class="skill-card">
         <div class="icon">🔗</div>
         <h3>Agentic AI & RAG</h3>
         <div class="skill-tags">
-          <span>LangChain</span><span>LangGraph</span><span>Weaviate</span><span>Vector DB</span><span>Tool Use</span><span>ReAct</span>
+          <span>LangChain</span><span>LangGraph</span><span>Weaviate</span><span>Vector DB</span><span>PydanticAI</span><span>Tool Use</span><span>ReAct</span>
         </div>
       </div>
       <div class="skill-card">
@@ -1072,8 +1209,8 @@
         <ul class="timeline-bullets">
           <li>Architected and scaled decentralized AI systems on the FLock Network using Federated ML; forged strategic collaborations with Animoca Brands, Pundi AI, Chasm, and OneKey to build LLM-powered agents for VC analysis, financial trading, sports analytics, and smart contract security.</li>
           <li>Spearheaded fine-tuning of LLMs (Qwen, LLaMA, Gemma, Phi) and engineered a resilient ML pipeline using Argo CD, GKE (H100 GPUs), MLFlow, Helm, and Pub/Sub for scalable, production-grade training and inference.</li>
-          <li>Conceived and launched VCScout-AI, a LangChain-based agentic pipeline leveraging Qwen-7B and Weaviate Vector DB to analyze 300+ startup deals, directly driving $450K+ in AI-informed investment decisions.</li>
-          <li>Recognized as Top AI Arena performer and featured at EthCC Brussels; highlighted in the official FLock blog interview and tweet.</li>
+          <li>Designed and deployed VCScout-AI, a LangChain-based agentic RAG pipeline with Qwen-7B, Weaviate vector search, and custom evaluation frameworks to analyze 300+ startup deals, directly driving $450K+ in AI-informed investment decisions.</li>
+          <li>Recognized as Top AI Arena performer; invited speaker at EthCC (Brussels) and NEARCON 2026 (San Francisco), including a lightning talk on training 7B LLMs on edge devices. Featured in the official FLock blog interview and tweet.</li>
         </ul>
       </div>
       <div class="timeline-item">
@@ -1082,8 +1219,8 @@
         <div class="timeline-role">AI/ML Engineer</div>
         <div class="timeline-company">Foundry Digital</div>
         <ul class="timeline-bullets">
-          <li>Spearheaded innovative projects utilizing the FLock Network and Federated ML to revolutionize decentralized ML models on blockchain; achieved top-performing model status five times across the network for four distinct cases, resulting in significant FML token accumulation for Foundry.</li>
-          <li>Captured 1st place in two major hackathons and 2nd in another; led a workshop at RIT on Machine Learning in Crypto, training and deploying models on FLock and Akash Network.</li>
+          <li>Spearheaded federated ML on the FLock network for decentralized models on chain; achieved top-performing status seven times across distinct tasks, with 1st place in two major ML hackathons and 2nd in another; mentored junior engineers on MLOps and model serving.</li>
+          <li>Led a technical workshop at RIT on Machine Learning in Crypto, training and deploying production models on FLock and Akash Network.</li>
           <li>Featured in FLock interviews highlighting innovative work in the network.</li>
         </ul>
       </div>
@@ -1104,7 +1241,7 @@
         <div class="timeline-company">Intel Corporation</div>
         <ul class="timeline-bullets">
           <li>Optimized TensorFlow on Windows and pioneered an MLOps framework to streamline automation and acceleration of Neural Network benchmark performance on various Intel CPUs.</li>
-          <li>Enhanced Convolution Operations performance by 400% utilizing OneDNN; validated and addressed issues/bugs within TensorFlow CPU.</li>
+          <li>Enhanced convolution operations inference latency by 400% using OneDNN; triaged and resolved critical TensorFlow CPU issues to production readiness.</li>
           <li>Built and released the TensorFlow binary to the worldwide TensorFlow community in collaboration with Google, achieving 10,000 downloads for TF 2.11 in a single day.</li>
         </ul>
       </div>
@@ -1132,7 +1269,7 @@
         <div class="timeline-role">Graduate Teaching Assistant</div>
         <div class="timeline-company">Northeastern University</div>
         <ul class="timeline-bullets">
-          <li>Taught Python, Machine Learning, and Data Analysis to 250 students; led business practicum workshops and graded assignments.</li>
+          <li>Taught Python, Machine Learning, and Data Analysis to 250 students; led practicum workshops on model development and evaluation; mentored student teams on applied ML projects.</li>
         </ul>
       </div>
       <div class="timeline-item">
@@ -1175,6 +1312,25 @@
       <a href="https://www.linkedin.com/in/jerry-adams-franklin/overlay/1635555036131/single-media-viewer/?profileId=ACoAACnkCCsBT722Vw_kHd1OX1cbKCfjjyGC5ls" target="_blank" rel="noopener noreferrer" class="achievement-item">
         <div class="title">AIA Division Achievement Award, Intel <span class="date">Nov 2022</span></div>
         <p class="desc">Recognition for the TensorFlow Windows project, leading to Intel's ownership of the TensorFlow CPU build from Google and the first successful release for the Windows ecosystem.</p>
+      </a>
+    </div>
+  </section>
+
+  <section id="speaking" class="reveal">
+    <p class="section-label">// Speaking & mentoring</p>
+    <h2 class="section-title">Stages, classrooms, and hackathons</h2>
+    <div class="achievements-list">
+      <a href="https://www.youtube.com/watch?v=qqr9qN8G7e0" target="_blank" rel="noopener noreferrer" class="achievement-item">
+        <div class="title">NEARCON 2026, San Francisco <span class="date">Feb 2026</span></div>
+        <p class="desc">Lightning talk on training 7B LLMs on edge devices at the NEAR Foundation conference (Fort Mason), alongside speakers from PyTorch, Gensyn, Akash Network, and Hyperbolic Labs.</p>
+      </a>
+      <a href="https://www.linkedin.com/feed/update/urn:li:activity:7449986053601427457/" target="_blank" rel="noopener noreferrer" class="achievement-item">
+        <div class="title">Guest lecture, VIT-AP University <span class="date">2026</span></div>
+        <p class="desc">Two-hour session for the School of Computer Science and Engineering on production AI: how LLMs are built and deployed, LoRA and QLoRA, why most models never leave the notebook, and a walkthrough of a production system from DCG.</p>
+      </a>
+      <a href="https://www.linkedin.com/feed/update/urn:li:activity:7444474624110845953/" target="_blank" rel="noopener noreferrer" class="achievement-item">
+        <div class="title">Mentor, WiCS at ASU x Opportunity Hack <span class="date">Spring 2026</span></div>
+        <p class="desc">Mentored university teams building real tools for nonprofits in 24 hours: AI architecture, LLM APIs, data modeling, and scoping so teams could ship. Hosted with Women in Computer Science at Arizona State University and Opportunity Hack.</p>
       </a>
     </div>
   </section>
