@@ -318,34 +318,46 @@
       animation: pulse 2.5s ease-in-out infinite;
     }
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-    .hero h1 {
-      font-size: clamp(2.25rem, 5vw, 3.35rem);
-      font-weight: 800;
-      line-height: 1.12;
-      letter-spacing: -0.03em;
+    .hero-name {
+      font-size: clamp(2.5rem, 6.5vw, 3.9rem);
+      font-weight: 500;
+      line-height: 1.08;
+      letter-spacing: -0.035em;
       margin-bottom: 1rem;
       animation: fadeUpScale 1.1s var(--ease-premium) 0.25s forwards;
       opacity: 0;
       color: var(--text);
     }
-    .hero h1 .hero-accent {
+    .hero-name-line {
+      display: block;
+    }
+    .hero-name-intro {
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+    .hero-name strong {
+      font-weight: 800;
       color: var(--brand);
       -webkit-text-fill-color: var(--brand);
     }
     .hero-tagline {
       font-family: var(--font-mono);
-      font-size: 0.9rem;
+      font-size: clamp(1.02rem, 2.1vw, 1.2rem);
+      font-weight: 500;
       color: var(--text-muted);
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.85rem;
+      line-height: 1.45;
+      max-width: 40rem;
       animation: fadeUp 1s var(--ease-premium) 0.55s forwards;
       opacity: 0;
     }
     .hero-subtitle {
-      font-size: 1.1rem;
+      font-size: clamp(0.9rem, 1.65vw, 1.02rem);
       font-weight: 400;
       color: var(--text-muted);
       max-width: 34rem;
       margin: 0 0 2rem;
+      line-height: 1.55;
       animation: fadeUp 1s var(--ease-premium) 0.8s forwards;
       opacity: 0;
     }
@@ -1063,10 +1075,13 @@
           <span class="hero-badge-dot"></span>
           Open to opportunities
         </div>
-        <h1>I build <span class="hero-accent">production-grade</span> intelligent systems.</h1>
-        <p class="hero-tagline">Jerry Adams Franklin · Senior AI Engineer @ Digital Currency Group · Deep Learning Engineer @ Intel · Ex Data Scientist @ Nokia</p>
+        <h1 class="hero-name">
+          <span class="hero-name-line"><span class="hero-name-intro">I'm</span> <strong>Jerry Adams</strong></span>
+          <span class="hero-name-line"><strong>Franklin.</strong></span>
+        </h1>
+        <p class="hero-tagline">Senior AI Engineer @ Digital Currency Group · Deep Learning Engineer @ Intel · Ex Data Scientist @ Nokia</p>
         <p class="hero-subtitle">
-          From fine-tuning LLMs and orchestrating AI agents to shipping decentralized ML at scale.
+          Building production-grade intelligent systems, from fine-tuning LLMs and orchestrating AI agents to shipping decentralized ML at scale.
         </p>
         <div class="hero-buttons">
           <a href="#contact" class="btn btn-primary">Get in Touch</a>
