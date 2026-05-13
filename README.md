@@ -27,11 +27,14 @@ Then visit `http://localhost:8000`.
 
 Push to the branch configured under the repository **Settings → Pages** (typically `main`). GitHub Pages serves the site from the repository root.
 
+The **`CNAME`** file should list the same hostname as **Settings → Pages → Custom domain** (here, `www`). If you switch the custom domain to the apex only, update `CNAME` to match.
+
 ## Repository layout
 
 | Path        | Description                    |
 | ----------- | ------------------------------ |
 | `index.html` | Full site: markup, styles, scripts |
+| `CNAME`     | Custom domain for GitHub Pages |
 | `assets/`   | Images and static assets       |
 
 ---
