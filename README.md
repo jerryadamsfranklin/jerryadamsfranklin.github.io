@@ -1,7 +1,39 @@
-# jerryadamsfranklin.github.io
+# Portfolio — Jerry Adams Franklin
 
-Source for my portfolio site, served via GitHub Pages.
+Personal portfolio and professional site, published with **GitHub Pages**.
 
 **Live site:** [jerryadamsfranklin.github.io](https://jerryadamsfranklin.github.io/)
 
-Single-page layout: HTML, CSS, and vanilla JavaScript in `index.html`. No build step or framework. Deploy by pushing to the configured branch.
+## About this project
+
+Single-page experience: one `index.html` with embedded CSS and vanilla JavaScript. No bundler, framework, or build step—easy to edit and deploy from any branch push.
+
+## Contents
+
+- Hero, about, skills, experience, education, achievements  
+- Speaking, featured work, projects, and contact  
+
+## Run locally
+
+Open `index.html` in a browser, or serve the folder with any static file server, for example:
+
+```bash
+python3 -m http.server 8000
+```
+
+Then visit `http://localhost:8000`.
+
+## Deploy
+
+Push to the branch configured under the repository **Settings → Pages** (typically `main`). GitHub Pages serves the site from the repository root.
+
+## Repository layout
+
+| Path        | Description                    |
+| ----------- | ------------------------------ |
+| `index.html` | Full site: markup, styles, scripts |
+| `assets/`   | Images and static assets       |
+
+---
+
+© Jerry Adams Franklin
