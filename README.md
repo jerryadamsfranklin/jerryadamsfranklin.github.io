@@ -2,7 +2,7 @@
 
 Personal portfolio and professional site, published with **GitHub Pages**.
 
-**Live site:** [jerryadamsfranklin.github.io](https://jerryadamsfranklin.github.io/)
+**Live site:** [www.jerryadamsfranklin.com](https://www.jerryadamsfranklin.com/)
 
 ## About this project
 
