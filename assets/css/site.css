@@ -609,13 +609,21 @@
       margin-bottom: 0.2rem;
       letter-spacing: -0.02em;
       line-height: 1.25;
+      grid-column: 1;
+      grid-row: 1;
     }
     .timeline-company {
       color: var(--text-muted);
       font-size: var(--type-body);
       margin-bottom: 0.75rem;
+      grid-column: 1;
+      grid-row: 2;
     }
-    .timeline-bullets { list-style: none; }
+    .timeline-bullets {
+      list-style: none;
+      grid-column: 1 / -1;
+      grid-row: 3;
+    }
     .timeline-bullets li {
       position: relative;
       padding-left: 1.25rem;
@@ -627,8 +635,10 @@
     .education-card .school {
       font-weight: 700;
       font-size: var(--type-h3);
-      margin-bottom: 0.25rem;
+      margin-bottom: 0;
       letter-spacing: -0.02em;
+      grid-column: 1;
+      grid-row: 1;
     }
     .portfolio-card p {
       max-width: var(--prose-card);
@@ -981,7 +991,11 @@
       position: relative;
       padding-bottom: 2.5rem;
       opacity: 0;
-      display: block;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      column-gap: 1rem;
+      row-gap: 0.35rem;
+      align-items: start;
       color: inherit;
       text-decoration: none;
     }
@@ -1020,7 +1034,13 @@
       font-family: var(--font-mono);
       font-size: 0.85rem;
       color: var(--text-muted);
-      margin-bottom: 0.25rem;
+      margin-bottom: 0;
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: end;
+      text-align: right;
+      white-space: nowrap;
+      max-width: 100%;
     }
     .timeline-bullets li::before {
       content: '▹';
@@ -1162,7 +1182,11 @@
       box-shadow: var(--shadow-mat);
       transition: border-color 0.45s var(--ease-smooth), box-shadow 0.5s var(--ease-premium), transform 0.45s var(--ease-premium);
       backdrop-filter: blur(8px);
-      display: block;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      column-gap: 1rem;
+      row-gap: 0.5rem;
+      align-items: start;
       color: inherit;
       text-decoration: none;
     }
@@ -1172,8 +1196,24 @@
     }
     .education-card:hover { border-color: var(--border-hover); box-shadow: var(--shadow-mat-hover); transform: translateY(-2px); }
     a.education-card:hover { box-shadow: inset 3px 0 0 rgba(249, 115, 22, 0.85), var(--shadow-mat-hover); }
-    .education-card .degree { color: var(--text-muted); font-family: var(--font-mono); font-size: 0.95rem; }
-    .education-card .meta { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; }
+    .education-card .meta {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0;
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: end;
+      text-align: right;
+      max-width: min(24ch, 46vw);
+    }
+    .education-card .degree {
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
 
     /* ----- Achievements ----- */
     .achievements-list { margin-top: 2rem; }
@@ -1206,11 +1246,24 @@
       box-shadow: inset 3px 0 0 rgba(148, 163, 184, 0.35), var(--shadow-mat);
     }
     .achievement-item .title {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: baseline;
+      gap: 0.5rem 1.25rem;
+      width: 100%;
+      max-width: none;
       font-weight: 700;
       margin-bottom: 0.35rem;
-      max-width: var(--prose-card);
     }
-    .achievement-item .title .date { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+    .achievement-item .title .date {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      justify-self: end;
+      text-align: right;
+      white-space: nowrap;
+    }
 
     /* ----- Footer ----- */
     footer {
@@ -1221,6 +1274,13 @@
       color: var(--text-muted);
     }
     .contact-location { font-family: var(--font-mono); font-size: 0.9rem; color: var(--text-muted); margin-top: 1rem; }
+
+    @media (max-width: 520px) {
+      .timeline-date,
+      .achievement-item .title .date {
+        white-space: normal;
+      }
+    }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
