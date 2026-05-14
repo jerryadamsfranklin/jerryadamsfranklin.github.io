@@ -1,4 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Site">
-  <rect width="32" height="32" rx="8" fill="#080808"/>
-  <path fill="#f97316" d="M11 7h3.5v14.8c0 2.6 1.4 4 3.8 4 .9 0 1.7-.2 2.4-.5l.9 2.7c-1 .4-2.2.7-3.6.7-3.9 0-6.5-2.3-6.5-7.4V7zm10.5 0H25v18h-3.5V7z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="JF">
+  <rect width="32" height="32" rx="6" fill="#080808"/>
+  <g transform="translate(16 16.5) scale(1.32) translate(-16 -16.5)">
+    <text
+      x="16"
+      y="16.5"
+      text-anchor="middle"
+      dominant-baseline="central"
+      font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+      font-size="16"
+      font-weight="900"
+      letter-spacing="-0.08em"
+      fill="#f97316">JF</text>
+  </g>
 </svg>
