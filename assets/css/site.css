@@ -652,13 +652,6 @@
       margin-bottom: 0.75rem;
       font-family: var(--font-mono);
     }
-    #publications .writing-note {
-      max-width: 65ch;
-      font-size: var(--type-body);
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin: 0;
-    }
     #publications .writing-block .achievements-list {
       margin-top: 0;
     }
@@ -1197,6 +1190,15 @@
     }
     .achievement-item:hover { border-color: var(--border-hover); box-shadow: var(--shadow-mat-hover); transform: translateY(-2px); }
     a.achievement-item:hover { box-shadow: inset 3px 0 0 rgba(249, 115, 22, 0.85), var(--shadow-mat-hover); }
+    .achievement-item-static {
+      cursor: default;
+      box-shadow: inset 3px 0 0 rgba(148, 163, 184, 0.35), var(--shadow-mat);
+    }
+    .achievement-item-static:hover {
+      transform: none;
+      border-color: var(--border);
+      box-shadow: inset 3px 0 0 rgba(148, 163, 184, 0.35), var(--shadow-mat);
+    }
     .achievement-item .title { font-weight: 700; margin-bottom: 0.35rem; }
     .achievement-item .title .date { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
 
