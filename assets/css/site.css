@@ -635,10 +635,8 @@
     .education-card .school {
       font-weight: 700;
       font-size: var(--type-h3);
-      margin-bottom: 0;
+      margin-bottom: 0.25rem;
       letter-spacing: -0.02em;
-      grid-column: 1;
-      grid-row: 1;
     }
     .portfolio-card p {
       max-width: var(--prose-card);
@@ -1182,11 +1180,7 @@
       box-shadow: var(--shadow-mat);
       transition: border-color 0.45s var(--ease-smooth), box-shadow 0.5s var(--ease-premium), transform 0.45s var(--ease-premium);
       backdrop-filter: blur(8px);
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      column-gap: 1rem;
-      row-gap: 0.5rem;
-      align-items: start;
+      display: block;
       color: inherit;
       text-decoration: none;
     }
@@ -1200,19 +1194,12 @@
       font-family: var(--font-mono);
       font-size: 0.85rem;
       color: var(--text-muted);
-      margin-top: 0;
-      grid-column: 2;
-      grid-row: 1;
-      justify-self: end;
-      text-align: right;
-      max-width: min(24ch, 46vw);
+      margin-top: 0.5rem;
     }
     .education-card .degree {
       color: var(--text-muted);
       font-family: var(--font-mono);
       font-size: 0.95rem;
-      grid-column: 1 / -1;
-      grid-row: 2;
     }
 
     /* ----- Achievements ----- */
