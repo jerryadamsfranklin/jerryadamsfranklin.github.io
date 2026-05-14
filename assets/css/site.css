@@ -33,6 +33,9 @@
       --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
       --shadow-mat: 0 4px 28px rgba(0, 0, 0, 0.38), var(--card-top-gleam);
       --shadow-mat-hover: 0 12px 40px rgba(0, 0, 0, 0.48), var(--card-top-gleam);
+      /* Wider than classic 65ch so full-width cards do not leave a large empty gutter; still capped for readability */
+      --prose-card: min(90ch, 100%);
+      --prose-narrow: min(65ch, 100%);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -581,7 +584,10 @@
       line-height: 1.28;
     }
     .skill-card h3 { margin-bottom: 0.75rem; }
-    .portfolio-card h3 { margin-bottom: 0.5rem; }
+    .portfolio-card h3 {
+      margin-bottom: 0.5rem;
+      max-width: var(--prose-card);
+    }
     .knowledge-block > h3 {
       font-size: var(--type-mono-label);
       font-weight: 600;
@@ -615,7 +621,7 @@
       padding-left: 1.25rem;
       margin-bottom: 0.4rem;
       color: var(--text-muted);
-      max-width: 65ch;
+      max-width: var(--prose-card);
       font-size: var(--type-body);
     }
     .education-card .school {
@@ -625,13 +631,13 @@
       letter-spacing: -0.02em;
     }
     .portfolio-card p {
-      max-width: 65ch;
+      max-width: var(--prose-card);
       font-size: var(--type-body);
       color: var(--text-muted);
       margin-bottom: 1rem;
     }
     .achievement-item .desc {
-      max-width: 65ch;
+      max-width: var(--prose-card);
       font-size: var(--type-body);
       color: var(--text-muted);
     }
@@ -734,7 +740,7 @@
       margin-top: 2rem;
     }
     .about-text {
-      max-width: 65ch;
+      max-width: var(--prose-narrow);
     }
     .about-text p { margin-bottom: 1.25rem; color: var(--text-muted); opacity: 0; }
     .about-stats {
@@ -788,7 +794,7 @@
       font-size: var(--type-body);
       line-height: 1.6;
       margin-bottom: 2rem;
-      max-width: 65ch;
+      max-width: var(--prose-narrow);
       opacity: 0;
     }
     .skills-grid {
@@ -1108,7 +1114,7 @@
     .contact-subtitle {
       color: var(--text-muted);
       margin-bottom: 2rem;
-      max-width: 65ch;
+      max-width: var(--prose-narrow);
       margin-left: auto;
       margin-right: auto;
       line-height: 1.6;
@@ -1199,7 +1205,11 @@
       border-color: var(--border);
       box-shadow: inset 3px 0 0 rgba(148, 163, 184, 0.35), var(--shadow-mat);
     }
-    .achievement-item .title { font-weight: 700; margin-bottom: 0.35rem; }
+    .achievement-item .title {
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      max-width: var(--prose-card);
+    }
     .achievement-item .title .date { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
 
     /* ----- Footer ----- */
