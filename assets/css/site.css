@@ -651,14 +651,16 @@
       color: var(--text-muted);
     }
 
-    /* ----- Publications & trade articles ----- */
-    #publications .publications-stack {
+    /* ----- Publications & Speaking subsections ----- */
+    #publications .publications-stack,
+    #speaking .publications-stack {
       margin-top: 2rem;
       display: flex;
       flex-direction: column;
       gap: 2.5rem;
     }
-    #publications .writing-block > h3 {
+    #publications .writing-block > h3,
+    #speaking .writing-block > h3 {
       font-size: var(--type-mono-label);
       font-weight: 600;
       color: var(--text-muted);
@@ -667,7 +669,8 @@
       margin-bottom: 0.75rem;
       font-family: var(--font-mono);
     }
-    #publications .writing-block .achievements-list {
+    #publications .writing-block .achievements-list,
+    #speaking .writing-block .achievements-list {
       margin-top: 0;
     }
 
@@ -715,10 +718,6 @@
     .reveal.visible .education-grid .education-card:nth-child(2) { animation-delay: 0.65s; }
     .reveal.visible .achievements-list .achievement-item:nth-child(1) { animation-delay: 0.4s; }
     .reveal.visible .achievements-list .achievement-item:nth-child(2) { animation-delay: 0.65s; }
-    .reveal.visible #speaking .achievements-list .achievement-item:nth-child(1) { animation-delay: 0.35s; }
-    .reveal.visible #speaking .achievements-list .achievement-item:nth-child(2) { animation-delay: 0.5s; }
-    .reveal.visible #speaking .achievements-list .achievement-item:nth-child(3) { animation-delay: 0.65s; }
-    .reveal.visible #speaking .achievements-list .achievement-item:nth-child(4) { animation-delay: 0.8s; }
     .reveal.visible #publications .achievements-list .achievement-item:nth-child(1) { animation-delay: 0.35s; }
     .reveal.visible #publications .achievements-list .achievement-item:nth-child(2) { animation-delay: 0.5s; }
     .reveal.visible .contact-links a { opacity: 0; animation: fadeUpScale 0.75s var(--ease-premium) forwards; }
