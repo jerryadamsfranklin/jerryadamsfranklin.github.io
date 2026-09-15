@@ -1258,6 +1258,21 @@
       cursor: pointer;
       box-shadow: inset 3px 0 0 rgba(249, 115, 22, 0.55), var(--shadow-mat);
     }
+    a.achievement-item.achievement-item-source-arxiv {
+      position: relative;
+      padding-bottom: 2.35rem;
+    }
+    a.achievement-item.achievement-item-source-arxiv::after {
+      content: 'arXiv ↗';
+      position: absolute;
+      right: 1.5rem;
+      bottom: 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      pointer-events: none;
+    }
     .achievement-item:hover { border-color: var(--border-hover); box-shadow: var(--shadow-mat-hover); transform: translateY(-2px); }
     a.achievement-item:hover { box-shadow: inset 3px 0 0 rgba(249, 115, 22, 0.85), var(--shadow-mat-hover); }
     .achievement-item-static {
