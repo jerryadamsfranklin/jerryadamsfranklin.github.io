@@ -4,21 +4,8 @@
   if (!file) file = 'index.html';
   var isHome = file === 'index.html' || file === '' || /\/$/.test(path);
 
-  // Only redirect legacy deep hashes that are NOT on-home section ids
-  var hashRedirects = {
-    '#skills': 'about.html#skills',
-    '#education': 'about.html#education',
-    '#achievements': 'work.html',
-    '#featured': 'work.html#featured',
-    '#projects': 'work.html#projects',
-    '#project-vcscout': 'work.html#project-vcscout',
-    '#award-intel': 'work.html#award-intel',
-    '#talk-ai-risk-summit': 'speaking.html#talk-ai-risk-summit',
-    '#talk-nearcon': 'speaking.html#talk-nearcon',
-    '#talk-ethcc': 'speaking.html#talk-ethcc',
-    '#publications': 'writing.html',
-    '#press': 'writing.html#press'
-  };
+  // Home now hosts the original section anchors again; only redirect if truly missing.
+  var hashRedirects = {};
 
   if (isHome && window.location.hash && hashRedirects[window.location.hash]) {
     window.location.replace(hashRedirects[window.location.hash]);
@@ -79,9 +66,12 @@
   if ('IntersectionObserver' in window) {
     var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        // Fire once per section so portal entrances stay crisp
+        if (entry.target.classList.contains('home-sec')) observer.unobserve(entry.target);
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    }, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
     reveals.forEach(function(el) { observer.observe(el); });
   } else {
     reveals.forEach(function(el) { el.classList.add('visible'); });
@@ -89,13 +79,18 @@
 
   // Home section scroll spy for dock + nav
   if (isHome && 'IntersectionObserver' in window) {
-    var sectionIds = ['home', 'about', 'experience', 'work', 'writing', 'speaking', 'contact'];
+    var sectionIds = ['home', 'about', 'experience', 'featured', 'publications', 'speaking', 'contact'];
     var sectionMap = {
       home: 'home',
       about: 'about',
+      skills: 'about',
       experience: 'about',
-      work: 'work',
-      writing: 'writing',
+      education: 'about',
+      achievements: 'work',
+      featured: 'work',
+      projects: 'work',
+      publications: 'writing',
+      press: 'writing',
       speaking: 'writing',
       contact: 'contact'
     };
@@ -111,7 +106,12 @@
           else a.removeAttribute('aria-current');
         });
         document.querySelectorAll('.nav-links a[data-nav]').forEach(function(a) {
-          a.classList.toggle('active', a.getAttribute('data-nav') === id);
+          var key = a.getAttribute('data-nav');
+          var on = key === id;
+          if (!on && key === 'about' && (id === 'skills' || id === 'education')) on = true;
+          if (!on && key === 'work' && (id === 'achievements' || id === 'featured' || id === 'projects')) on = true;
+          if (!on && key === 'writing' && (id === 'publications' || id === 'press')) on = true;
+          a.classList.toggle('active', on);
         });
       });
     }, { threshold: 0.35, rootMargin: '-20% 0px -45% 0px' });
