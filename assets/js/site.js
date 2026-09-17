@@ -16,6 +16,11 @@
   requestAnimationFrame(function() {
     document.body.classList.add('page-enter');
   });
+  document.body.addEventListener('animationend', function onPageEnter(e) {
+    if (e.animationName !== 'pageEnter') return;
+    document.body.classList.remove('page-enter');
+    document.body.removeEventListener('animationend', onPageEnter);
+  });
 
   var pageKey = 'home';
   if (file.indexOf('about') === 0) pageKey = 'about';
@@ -44,54 +49,47 @@
 
   var nav = document.getElementById('nav');
   var toggle = document.getElementById('navToggle');
-  var fab = document.getElementById('navFab');
   var links = document.getElementById('navLinks');
+  var navFab = document.getElementById('navFab');
 
   function setNavExpanded(open) {
     if (!nav) return;
     nav.classList.toggle('nav-expanded', open);
-    if (fab) fab.setAttribute('aria-expanded', open ? 'true' : 'false');
-    if (fab) fab.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    if (links && !nav.classList.contains('nav-compact')) {
-      links.classList.toggle('open', open);
+    if (navFab) {
+      navFab.setAttribute('aria-expanded', open ? 'true' : 'false');
+      navFab.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     }
   }
 
   function onScrollNav() {
     if (!nav) return;
-    var y = window.scrollY || 0;
+    var y = window.scrollY || document.documentElement.scrollTop || 0;
     if (y > 40) nav.classList.add('scrolled');
     else nav.classList.remove('scrolled');
 
-    // Collapse full bar into floating button after leaving the hero
-    if (y > 120) {
-      if (!nav.classList.contains('nav-compact')) {
+    // Home: collapse the floating bar into a fixed menu button while scrolling
+    if (nav.classList.contains('nav-float')) {
+      if (y > 80) {
         nav.classList.add('nav-compact');
+      } else {
+        nav.classList.remove('nav-compact');
         setNavExpanded(false);
-        if (links) links.classList.remove('open');
       }
-    } else {
-      nav.classList.remove('nav-compact');
-      setNavExpanded(false);
     }
   }
   window.addEventListener('scroll', onScrollNav, { passive: true });
   onScrollNav();
 
-  if (fab) {
-    fab.addEventListener('click', function(e) {
+  if (navFab) {
+    navFab.addEventListener('click', function(e) {
       e.stopPropagation();
+      if (!nav.classList.contains('nav-compact')) return;
       setNavExpanded(!nav.classList.contains('nav-expanded'));
     });
   }
   if (toggle && links) {
     toggle.addEventListener('click', function() {
-      // Mobile top-of-page: classic open; compact mode uses fab
-      if (nav.classList.contains('nav-compact')) {
-        setNavExpanded(!nav.classList.contains('nav-expanded'));
-      } else {
-        links.classList.toggle('open');
-      }
+      links.classList.toggle('open');
     });
   }
   if (links) {
