@@ -47,17 +47,28 @@
     <canvas id="digitalParticles" class="digital-particles" data-particles></canvas>
   </div>
 
-  <nav class="nav nav-app" id="nav">
-    <a href="index.html" class="nav-brand" aria-label="Jerry Adams Franklin home">JF</a>
+  <nav class="nav nav-app nav-float" id="nav" aria-label="Primary">
+    <a href="#home" class="nav-brand" aria-label="Jerry Adams Franklin home">JF</a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#home" data-nav="home" class="active">Home</a></li>
       <li><a href="#about" data-nav="about">About</a></li>
+      <li><a href="#skills" data-nav="skills">Skills</a></li>
       <li><a href="#experience" data-nav="experience">Experience</a></li>
-      <li><a href="#featured" data-nav="work">Work</a></li>
-      <li><a href="#publications" data-nav="writing">Writing</a></li>
-      <li><a href="#speaking" data-nav="speaking">Speaking</a></li>
+      <li><a href="#education" data-nav="education">Education</a></li>
+      <li><a href="#achievements" data-nav="achievements">Achievements</a></li>
+      <li><a href="#speaking" data-nav="speaking">Speaking &amp; Judging</a></li>
+      <li><a href="#publications" data-nav="publications">Publications</a></li>
+      <li><a href="#press" data-nav="press">Press</a></li>
+      <li><a href="#featured" data-nav="featured">Featured</a></li>
+      <li><a href="#projects" data-nav="projects">Projects</a></li>
       <li><a href="#contact" data-nav="contact">Contact</a></li>
     </ul>
+    <button type="button" class="nav-fab" id="navFab" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span class="nav-fab-icon" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+      <span class="nav-fab-label">Menu</span>
+    </button>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
       <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
     </button>
@@ -86,12 +97,42 @@
           <a href="https://github.com/jerryadamsfranklin" class="btn btn-outline" target="_blank" rel="noopener noreferrer">GitHub</a>
           <a href="https://www.linkedin.com/in/jerry-adams-franklin/" class="btn btn-outline" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
-        <div class="hero-stats">
-          <a href="#project-vcscout" class="hero-stat anim-item"><strong>$450K+</strong><span>AI-informed investment outcomes led through VCScout-AI at DCG</span></a>
-          <a href="#talk-ethcc" class="hero-stat anim-item"><strong>EthCC</strong><span>Invited talk in Brussels on decentralized AI and federated learning on the FLock network</span></a>
-          <a href="#talk-nearcon" class="hero-stat anim-item"><strong>NEARCON</strong><span>Lightning talk on training 7B LLMs on edge devices (NEAR Foundation, San Francisco)</span></a>
-          <a href="#award-intel" class="hero-stat anim-item"><strong>Intel</strong><span>AIA Division Achievement Award for TensorFlow on Windows</span></a>
-          <a href="#talk-ai-risk-summit" class="hero-stat anim-item"><strong>AI Risk Summit</strong><span>Invited talk on "Federated Learning as AI Risk Infrastructure: The Aggregation Problem Enterprises Are Not Ready For"</span></a>
+        <div class="hero-stats" id="heroStats">
+          <a href="#project-vcscout" class="hero-stat anim-item" data-hero-card>
+            <span class="hero-stat-glow" aria-hidden="true"></span>
+            <span class="hero-stat-scan" aria-hidden="true"></span>
+            <span class="hero-stat-index" aria-hidden="true">01</span>
+            <strong>$450K+</strong>
+            <span>AI-informed investment outcomes led through VCScout-AI at DCG</span>
+          </a>
+          <a href="#talk-ethcc" class="hero-stat anim-item" data-hero-card>
+            <span class="hero-stat-glow" aria-hidden="true"></span>
+            <span class="hero-stat-scan" aria-hidden="true"></span>
+            <span class="hero-stat-index" aria-hidden="true">02</span>
+            <strong>EthCC</strong>
+            <span>Invited talk in Brussels on decentralized AI and federated learning on the FLock network</span>
+          </a>
+          <a href="#talk-nearcon" class="hero-stat anim-item" data-hero-card>
+            <span class="hero-stat-glow" aria-hidden="true"></span>
+            <span class="hero-stat-scan" aria-hidden="true"></span>
+            <span class="hero-stat-index" aria-hidden="true">03</span>
+            <strong>NEARCON</strong>
+            <span>Lightning talk on training 7B LLMs on edge devices (NEAR Foundation, San Francisco)</span>
+          </a>
+          <a href="#award-intel" class="hero-stat anim-item" data-hero-card>
+            <span class="hero-stat-glow" aria-hidden="true"></span>
+            <span class="hero-stat-scan" aria-hidden="true"></span>
+            <span class="hero-stat-index" aria-hidden="true">04</span>
+            <strong>Intel</strong>
+            <span>AIA Division Achievement Award for TensorFlow on Windows</span>
+          </a>
+          <a href="#talk-ai-risk-summit" class="hero-stat anim-item" data-hero-card>
+            <span class="hero-stat-glow" aria-hidden="true"></span>
+            <span class="hero-stat-scan" aria-hidden="true"></span>
+            <span class="hero-stat-index" aria-hidden="true">05</span>
+            <strong>AI Risk Summit</strong>
+            <span>Invited talk on "Federated Learning as AI Risk Infrastructure: The Aggregation Problem Enterprises Are Not Ready For"</span>
+          </a>
         </div>
         <div class="hero-press">
           <span class="hero-press-label">Featured at</span>
@@ -165,48 +206,30 @@
         </div>
       </div>
     </div>
-    <div class="skills-grid">
-      <div class="skill-card anim-item">
-        <div class="icon">🧠</div>
-        <h3>LLMs & Generative AI</h3>
-        <div class="skill-tags">
-          <span>Qwen</span><span>LLaMA</span><span>Gemma</span><span>Phi</span><span>Fine-tuning</span><span>LoRA</span><span>QLoRA</span><span>PEFT</span><span>RLHF</span><span>vLLM</span>
-        </div>
+    <div class="skill-stack">
+      <div class="skill-row anim-item">
+        <h3>LLMs &amp; Generative AI</h3>
+        <p class="skill-line">Qwen · LLaMA · Gemma · Phi · Fine-tuning · LoRA · QLoRA · PEFT · RLHF · vLLM</p>
       </div>
-      <div class="skill-card anim-item">
-        <div class="icon">🔗</div>
-        <h3>Agentic AI & RAG</h3>
-        <div class="skill-tags">
-          <span>LangChain</span><span>LangGraph</span><span>Weaviate</span><span>Vector DB</span><span>PydanticAI</span><span>Tool Use</span><span>ReAct</span>
-        </div>
+      <div class="skill-row anim-item">
+        <h3>Agentic AI &amp; RAG</h3>
+        <p class="skill-line">LangChain · LangGraph · Weaviate · Vector DB · PydanticAI · Tool Use · ReAct</p>
       </div>
-      <div class="skill-card anim-item">
-        <div class="icon">⚡</div>
+      <div class="skill-row anim-item">
         <h3>ML Infrastructure</h3>
-        <div class="skill-tags">
-          <span>GKE</span><span>H100 GPUs</span><span>ArgoCD</span><span>MLflow</span><span>Helm</span><span>Kubernetes</span><span>Docker</span>
-        </div>
+        <p class="skill-line">GKE · H100 GPUs · ArgoCD · MLflow · Helm · Kubernetes · Docker</p>
       </div>
-      <div class="skill-card anim-item">
-        <div class="icon">📊</div>
+      <div class="skill-row anim-item">
         <h3>Deep Learning</h3>
-        <div class="skill-tags">
-          <span>TensorFlow</span><span>PyTorch</span><span>Computer Vision</span><span>NLP</span><span>Transformers</span>
-        </div>
+        <p class="skill-line">TensorFlow · PyTorch · Computer Vision · NLP · Transformers</p>
       </div>
-      <div class="skill-card anim-item">
-        <div class="icon">🌐</div>
-        <h3>Federated & Decentralized ML</h3>
-        <div class="skill-tags">
-          <span>FLock Network</span><span>Federated Learning</span><span>Blockchain</span><span>Web3</span>
-        </div>
+      <div class="skill-row anim-item">
+        <h3>Federated &amp; Decentralized ML</h3>
+        <p class="skill-line">FLock Network · Federated Learning · Blockchain · Web3</p>
       </div>
-      <div class="skill-card anim-item">
-        <div class="icon">💻</div>
-        <h3>Languages & Tools</h3>
-        <div class="skill-tags">
-          <span>Python</span><span>SQL</span><span>C/C++</span><span>R</span><span>GCP</span><span>AWS</span><span>Azure</span><span>FastAPI</span><span>Git</span>
-        </div>
+      <div class="skill-row anim-item">
+        <h3>Languages &amp; Tools</h3>
+        <p class="skill-line">Python · SQL · C/C++ · R · GCP · AWS · Azure · FastAPI · Git</p>
       </div>
     </div>
   </section>

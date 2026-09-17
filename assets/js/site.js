@@ -43,24 +43,72 @@
   }
 
   var nav = document.getElementById('nav');
+  var toggle = document.getElementById('navToggle');
+  var fab = document.getElementById('navFab');
+  var links = document.getElementById('navLinks');
+
+  function setNavExpanded(open) {
+    if (!nav) return;
+    nav.classList.toggle('nav-expanded', open);
+    if (fab) fab.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (fab) fab.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    if (links && !nav.classList.contains('nav-compact')) {
+      links.classList.toggle('open', open);
+    }
+  }
+
   function onScrollNav() {
     if (!nav) return;
-    if (window.scrollY > 40) nav.classList.add('scrolled');
+    var y = window.scrollY || 0;
+    if (y > 40) nav.classList.add('scrolled');
     else nav.classList.remove('scrolled');
+
+    // Collapse full bar into floating button after leaving the hero
+    if (y > 120) {
+      if (!nav.classList.contains('nav-compact')) {
+        nav.classList.add('nav-compact');
+        setNavExpanded(false);
+        if (links) links.classList.remove('open');
+      }
+    } else {
+      nav.classList.remove('nav-compact');
+      setNavExpanded(false);
+    }
   }
   window.addEventListener('scroll', onScrollNav, { passive: true });
   onScrollNav();
 
-  var toggle = document.getElementById('navToggle');
-  var links = document.getElementById('navLinks');
-  if (toggle && links) {
-    toggle.addEventListener('click', function() {
-      links.classList.toggle('open');
-    });
-    links.querySelectorAll('a').forEach(function(a) {
-      a.addEventListener('click', function() { links.classList.remove('open'); });
+  if (fab) {
+    fab.addEventListener('click', function(e) {
+      e.stopPropagation();
+      setNavExpanded(!nav.classList.contains('nav-expanded'));
     });
   }
+  if (toggle && links) {
+    toggle.addEventListener('click', function() {
+      // Mobile top-of-page: classic open; compact mode uses fab
+      if (nav.classList.contains('nav-compact')) {
+        setNavExpanded(!nav.classList.contains('nav-expanded'));
+      } else {
+        links.classList.toggle('open');
+      }
+    });
+  }
+  if (links) {
+    links.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        links.classList.remove('open');
+        setNavExpanded(false);
+      });
+    });
+  }
+  document.addEventListener('click', function(e) {
+    if (!nav || !nav.classList.contains('nav-expanded')) return;
+    if (!nav.contains(e.target)) setNavExpanded(false);
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') setNavExpanded(false);
+  });
 
   var reveals = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
@@ -79,7 +127,11 @@
 
   // Home section scroll spy for dock + nav
   if (isHome && 'IntersectionObserver' in window) {
-    var sectionIds = ['home', 'about', 'experience', 'featured', 'publications', 'speaking', 'contact'];
+    var sectionIds = [
+      'home', 'about', 'skills', 'experience', 'education',
+      'achievements', 'speaking', 'publications', 'press',
+      'featured', 'projects', 'contact'
+    ];
     var sectionMap = {
       home: 'home',
       about: 'about',
@@ -106,15 +158,10 @@
           else a.removeAttribute('aria-current');
         });
         document.querySelectorAll('.nav-links a[data-nav]').forEach(function(a) {
-          var key = a.getAttribute('data-nav');
-          var on = key === id;
-          if (!on && key === 'about' && (id === 'skills' || id === 'education')) on = true;
-          if (!on && key === 'work' && (id === 'achievements' || id === 'featured' || id === 'projects')) on = true;
-          if (!on && key === 'writing' && (id === 'publications' || id === 'press')) on = true;
-          a.classList.toggle('active', on);
+          a.classList.toggle('active', a.getAttribute('data-nav') === id);
         });
       });
-    }, { threshold: 0.35, rootMargin: '-20% 0px -45% 0px' });
+    }, { threshold: 0.28, rootMargin: '-18% 0px -50% 0px' });
     sectionIds.forEach(function(id) {
       var el = document.getElementById(id);
       if (el) spy.observe(el);
