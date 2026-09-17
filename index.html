@@ -38,111 +38,469 @@
   }
   </script>
 </head>
-<body class="page-home app-shell">
+<body class="page-home app-shell home-scroll digital-theme">
+  <div class="digital-bg" aria-hidden="true">
+    <div class="digital-grid"></div>
+    <div class="digital-glow digital-glow-a"></div>
+    <div class="digital-glow digital-glow-b"></div>
+    <div class="digital-scan"></div>
+    <canvas id="digitalParticles" class="digital-particles" data-particles></canvas>
+  </div>
+
   <nav class="nav nav-app" id="nav">
     <a href="index.html" class="nav-brand" aria-label="Jerry Adams Franklin home">JF</a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="index.html" data-nav="home" class="active">Home</a></li>
-      <li><a href="about.html" data-nav="about">About</a></li>
-      <li><a href="experience.html" data-nav="experience">Experience</a></li>
-      <li><a href="work.html" data-nav="work">Work</a></li>
-      <li><a href="writing.html" data-nav="writing">Writing</a></li>
-      <li><a href="speaking.html" data-nav="speaking">Speaking</a></li>
-      <li><a href="contact.html" data-nav="contact">Contact</a></li>
+      <li><a href="#home" data-nav="home" class="active">Home</a></li>
+      <li><a href="#about" data-nav="about">About</a></li>
+      <li><a href="#experience" data-nav="experience">Experience</a></li>
+      <li><a href="#work" data-nav="work">Work</a></li>
+      <li><a href="#writing" data-nav="writing">Writing</a></li>
+      <li><a href="#speaking" data-nav="speaking">Speaking</a></li>
+      <li><a href="#contact" data-nav="contact">Contact</a></li>
     </ul>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
       <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
     </button>
   </nav>
 
-  <main class="app-home" id="home">
-    <header class="app-profile">
-      <img src="assets/profile.png" alt="" class="app-avatar" width="72" height="72" loading="eager" decoding="async">
-      <div class="app-profile-text">
-        <h1 class="app-name">Jerry Adams Franklin</h1>
-        <p class="app-role">Senior AI Engineer</p>
-        <p class="app-tag">LLMs · Federated learning · Production AI</p>
+  <main class="home-flow">
+    <header class="home-hero reveal" id="home">
+      <div class="home-hero-inner">
+        <div class="home-hero-photo-wrap">
+          <span class="photo-ring"></span>
+          <span class="photo-corner photo-corner-tl"></span>
+          <span class="photo-corner photo-corner-tr"></span>
+          <span class="photo-corner photo-corner-bl"></span>
+          <span class="photo-corner photo-corner-br"></span>
+          <img src="assets/profile.png" alt="Jerry Adams Franklin" class="home-hero-photo" width="160" height="160" loading="eager" decoding="async">
+        </div>
+        <div>
+          <p class="home-hero-kicker"><span class="mono-tag">&gt;_</span> Senior AI Engineer</p>
+          <h1 class="home-hero-name">Jerry Adams <span class="name-glow">Franklin</span></h1>
+          <p class="home-hero-lede"><span id="typedLede"></span><span class="typed-cursor" aria-hidden="true">|</span></p>
+        </div>
+      </div>
+      <div class="home-hero-stats">
+        <div class="stat-chip"><strong data-count="5" data-suffix="+">0</strong><span>Years</span></div>
+        <div class="stat-chip"><strong data-count="450" data-prefix="$" data-suffix="K+">0</strong><span>Investments</span></div>
+        <div class="stat-chip"><strong data-count="7" data-suffix="x">0</strong><span>FLock top</span></div>
+      </div>
+      <div class="signal-row" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
       </div>
     </header>
 
-    <div class="app-chips" aria-label="Highlights">
-      <a href="work.html#project-vcscout" class="app-chip">$450K+</a>
-      <a href="speaking.html#talk-ai-risk-summit" class="app-chip">AI Risk Summit</a>
-      <a href="speaking.html#talk-ethcc" class="app-chip">EthCC</a>
-      <a href="speaking.html#talk-nearcon" class="app-chip">NEARCON</a>
-      <a href="work.html#award-intel" class="app-chip">Intel Award</a>
-      <a href="https://www.sciencetimes.com/articles/62593/20260914/autonomy-threshold-how-enterprise-ai-moving-assistant-analyst.htm" target="_blank" rel="noopener" class="app-chip">Science Times</a>
-    </div>
+    <section class="home-sec reveal" id="about">
+      <div class="home-sec-head">
+        <p class="home-sec-label">01 · About</p>
+        <h2 class="home-sec-title">Who I am</h2>
+        <p class="home-sec-sub">Story, skills, and the bits that made me. Tap a card to peek inside.</p>
+      </div>
+      <div class="subcard-grid">
+        <button type="button" class="subcard" data-modal="modal-about-story">
+          <span class="subcard-beam" aria-hidden="true"></span>
+          <span class="subcard-meta">01 · Story</span>
+          <span class="subcard-title">Building AI that decides</span>
+          <span class="subcard-desc">Decentralized systems, VCScout-AI, and production LLM work.</span>
+          <span class="subcard-cta">Dive in <span aria-hidden="true">↗</span></span>
+        </button>
+        <button type="button" class="subcard" data-modal="modal-about-skills">
+          <span class="subcard-beam" aria-hidden="true"></span>
+          <span class="subcard-meta">02 · Skills</span>
+          <span class="subcard-title">What I work with</span>
+          <span class="subcard-desc">LLMs, agents, ML infra, federated learning.</span>
+          <span class="subcard-cta">Dive in <span aria-hidden="true">↗</span></span>
+        </button>
+        <button type="button" class="subcard" data-modal="modal-about-education">
+          <span class="subcard-beam" aria-hidden="true"></span>
+          <span class="subcard-meta">03 · Education</span>
+          <span class="subcard-title">Background</span>
+          <span class="subcard-desc">Northeastern MS Data Science · DSU B.Tech CSE.</span>
+          <span class="subcard-cta">Dive in <span aria-hidden="true">↗</span></span>
+        </button>
+      </div>
+    </section>
 
-    <p class="app-section-label">Browse</p>
-    <div class="app-tiles">
-      <a href="about.html" class="app-tile">
-        <span class="app-tile-icon" aria-hidden="true">01</span>
-        <span class="app-tile-body">
-          <span class="app-tile-title">About</span>
-          <span class="app-tile-desc">Story, skills, education</span>
-        </span>
-        <span class="app-tile-go" aria-hidden="true">›</span>
-      </a>
-      <a href="experience.html" class="app-tile">
-        <span class="app-tile-icon" aria-hidden="true">02</span>
-        <span class="app-tile-body">
-          <span class="app-tile-title">Experience</span>
-          <span class="app-tile-desc">DCG, Intel, Nokia, Foundry</span>
-        </span>
-        <span class="app-tile-go" aria-hidden="true">›</span>
-      </a>
-      <a href="work.html" class="app-tile">
-        <span class="app-tile-icon" aria-hidden="true">03</span>
-        <span class="app-tile-body">
-          <span class="app-tile-title">Work</span>
-          <span class="app-tile-desc">Projects and recognition</span>
-        </span>
-        <span class="app-tile-go" aria-hidden="true">›</span>
-      </a>
-      <a href="writing.html" class="app-tile">
-        <span class="app-tile-icon" aria-hidden="true">04</span>
-        <span class="app-tile-body">
-          <span class="app-tile-title">Writing</span>
-          <span class="app-tile-desc">Papers, press, peer review</span>
-        </span>
-        <span class="app-tile-go" aria-hidden="true">›</span>
-      </a>
-      <a href="speaking.html" class="app-tile">
-        <span class="app-tile-icon" aria-hidden="true">05</span>
-        <span class="app-tile-body">
-          <span class="app-tile-title">Speaking</span>
-          <span class="app-tile-desc">Talks, mentoring, judging</span>
-        </span>
-        <span class="app-tile-go" aria-hidden="true">›</span>
-      </a>
-      <a href="contact.html" class="app-tile app-tile-accent">
-        <span class="app-tile-icon" aria-hidden="true">06</span>
-        <span class="app-tile-body">
-          <span class="app-tile-title">Contact</span>
-          <span class="app-tile-desc">Email, LinkedIn, ORCID</span>
-        </span>
-        <span class="app-tile-go" aria-hidden="true">›</span>
-      </a>
-    </div>
+    <section class="home-sec reveal" id="experience">
+      <div class="home-sec-head">
+        <p class="home-sec-label">02 · Experience</p>
+        <h2 class="home-sec-title">Where I built</h2>
+        <p class="home-sec-sub">Recent roles as compact cards. Hover, tilt, then dive in.</p>
+      </div>
+      <div class="subcard-grid">
+        <button type="button" class="subcard" data-modal="modal-exp-dcg">
+          <span class="subcard-beam" aria-hidden="true"></span>
+          <span class="subcard-meta">2025 – 2026</span>
+          <span class="subcard-title">Digital Currency Group</span>
+          <span class="subcard-desc">AI/ML Engineer IV · Federated AI, VCScout-AI, $450K+.</span>
+          <span class="subcard-cta">Dive in <span aria-hidden="true">↗</span></span>
+        </button>
+        <button type="button" class="subcard" data-modal="modal-exp-foundry">
+          <span class="subcard-beam" aria-hidden="true"></span>
+          <span class="subcard-meta">2024</span>
+          <span class="subcard-title">Foundry Digital</span>
+          <span class="subcard-desc">AI/ML Engineer · FLock network, hackathons, RIT workshop.</span>
+          <span class="subcard-cta">Dive in <span aria-hidden="true">↗</span></span>
+        </button>
+        <button type="button" class="subcard" data-modal="modal-exp-intel">
+          <span class="subcard-beam" aria-hidden="true"></span>
+          <span class="subcard-meta">2021 – 2023</span>
+          <span class="subcard-title">Intel</span>
+          <span class="subcard-desc">Deep Learning Engineer · TensorFlow Windows, 400% gains.</span>
+          <span class="subcard-cta">Dive in <span aria-hidden="true">↗</span></span>
+        </button>
+        <button type="button" class="subcard" data-modal="modal-exp-earlier">
+          <span class="subcard-beam" aria-hidden="true"></span>
+          <span class="subcard-meta">2017 – 2024</span>
+          <span class="subcard-title">Earlier roles</span>
+          <span class="subcard-desc">OneBill, Nokia, Northeastern teaching.</span>
+          <span class="subcard-cta">Dive in <span aria-hidden="true">↗</span></span>
+        </button>
+      </div>
+    </section>
 
-    <p class="app-footnote">Digital Currency Group · Intel · Nokia · Foundry · OneBill</p>
+    <section class="home-sec reveal" id="work">
+      <div class="home-sec-head">
+        <p class="home-sec-label">03 · Work</p>
+        <h2 class="home-sec-title">Selected work</h2>
+        <p class="home-sec-sub">Recognition, featured systems, and projects worth the scroll.</p>
+      </div>
+      <div class="subcard-grid">
+        <button type="button" class="subcard" data-modal="modal-work-awards">
+          <span class="subcard-beam" aria-hidden="true"></span>
+          <span class="subcard-meta">Recognition</span>
+          <span class="subcard-title">Achievements</span>
+          <span class="subcard-desc">FLock top performer · Intel AIA Award.</span>
+          <span class="subcard-cta">Dive in <span aria-hidden="true">↗</span></span>
+        </button>
+        <button type="button" class="subcard" data-modal="modal-work-featured">
+          <span class="subcard-beam" aria-hidden="true"></span>
+          <span class="subcard-meta">Featured</span>
+          <span class="subcard-title">Highlighted systems</span>
+          <span class="subcard-desc">VCScout-AI and decentralized AI on FLock.</span>
+          <span class="subcard-cta">Dive in <span aria-hidden="true">↗</span></span>
+        </button>
+        <button type="button" class="subcard" data-modal="modal-work-projects">
+          <span class="subcard-beam" aria-hidden="true"></span>
+          <span class="subcard-meta">Projects</span>
+          <span class="subcard-title">Other work</span>
+          <span class="subcard-desc">Vision, NLP, recommenders, and health ML.</span>
+          <span class="subcard-cta">Dive in <span aria-hidden="true">↗</span></span>
+        </button>
+      </div>
+    </section>
+
+    <section class="home-sec reveal" id="writing">
+      <div class="home-sec-head">
+        <p class="home-sec-label">04 · Writing</p>
+        <h2 class="home-sec-title">Research and press</h2>
+        <p class="home-sec-sub">Papers, articles, peer review, and a little press noise.</p>
+      </div>
+      <div class="subcard-grid">
+        <button type="button" class="subcard" data-modal="modal-writing-pubs">
+          <span class="subcard-beam" aria-hidden="true"></span>
+          <span class="subcard-meta">Publications</span>
+          <span class="subcard-title">Research papers</span>
+          <span class="subcard-desc">Federated LoRA preprint · Resource-constrained FT survey.</span>
+          <span class="subcard-cta">Dive in <span aria-hidden="true">↗</span></span>
+        </button>
+        <button type="button" class="subcard" data-modal="modal-writing-trade">
+          <span class="subcard-beam" aria-hidden="true"></span>
+          <span class="subcard-meta">Trade</span>
+          <span class="subcard-title">Trade articles</span>
+          <span class="subcard-desc">QLoRA Explained on HackerNoon.</span>
+          <span class="subcard-cta">Dive in <span aria-hidden="true">↗</span></span>
+        </button>
+        <button type="button" class="subcard" data-modal="modal-writing-review">
+          <span class="subcard-beam" aria-hidden="true"></span>
+          <span class="subcard-meta">Peer review</span>
+          <span class="subcard-title">Journals</span>
+          <span class="subcard-desc">ACM Computing Surveys · Journal of Supercomputing.</span>
+          <span class="subcard-cta">Dive in <span aria-hidden="true">↗</span></span>
+        </button>
+        <button type="button" class="subcard" data-modal="modal-writing-press">
+          <span class="subcard-beam" aria-hidden="true"></span>
+          <span class="subcard-meta">Press</span>
+          <span class="subcard-title">Science Times</span>
+          <span class="subcard-desc">Feature on enterprise AI autonomy and trust.</span>
+          <span class="subcard-cta">Dive in <span aria-hidden="true">↗</span></span>
+        </button>
+      </div>
+    </section>
+
+    <section class="home-sec reveal" id="speaking">
+      <div class="home-sec-head">
+        <p class="home-sec-label">05 · Speaking</p>
+        <h2 class="home-sec-title">Stages and rooms</h2>
+        <p class="home-sec-sub">Talks, mentoring, and judging. The rooms where ideas get loud.</p>
+      </div>
+      <div class="subcard-grid">
+        <button type="button" class="subcard" data-modal="modal-speak-talks">
+          <span class="subcard-beam" aria-hidden="true"></span>
+          <span class="subcard-meta">Speaking</span>
+          <span class="subcard-title">Invited talks</span>
+          <span class="subcard-desc">AI Risk Summit · NEARCON · EthCC · VIT-AP.</span>
+          <span class="subcard-cta">Dive in <span aria-hidden="true">↗</span></span>
+        </button>
+        <button type="button" class="subcard" data-modal="modal-speak-mentor">
+          <span class="subcard-beam" aria-hidden="true"></span>
+          <span class="subcard-meta">Mentoring</span>
+          <span class="subcard-title">Hackathon mentor</span>
+          <span class="subcard-desc">USAII Global AI · WiCS × Opportunity Hack.</span>
+          <span class="subcard-cta">Dive in <span aria-hidden="true">↗</span></span>
+        </button>
+        <button type="button" class="subcard" data-modal="modal-speak-judge">
+          <span class="subcard-beam" aria-hidden="true"></span>
+          <span class="subcard-meta">Judging</span>
+          <span class="subcard-title">Panels</span>
+          <span class="subcard-desc">UC Berkeley AI Hackathon · lablab.ai × Bright Data.</span>
+          <span class="subcard-cta">Dive in <span aria-hidden="true">↗</span></span>
+        </button>
+      </div>
+    </section>
+
+    <section class="home-sec reveal" id="contact">
+      <div class="home-sec-head">
+        <p class="home-sec-label">06 · Contact</p>
+        <h2 class="home-sec-title">Let's connect</h2>
+        <p class="home-sec-sub">Say hi. Coffee optional. Good ideas required.</p>
+      </div>
+      <div class="subcard-grid subcard-grid-contact">
+        <button type="button" class="subcard subcard-accent" data-modal="modal-contact">
+          <span class="subcard-beam" aria-hidden="true"></span>
+          <span class="subcard-meta">Contact</span>
+          <span class="subcard-title">Email, LinkedIn, GitHub, ORCID</span>
+          <span class="subcard-desc">Fairport, NY · franklin.je@northeastern.edu</span>
+          <span class="subcard-cta">Dive in <span aria-hidden="true">↗</span></span>
+        </button>
+      </div>
+    </section>
   </main>
 
   <nav class="app-dock" aria-label="Primary">
-    <a href="index.html" class="app-dock-item is-active" aria-current="page">
-      Home
-    </a>
-    <a href="about.html" class="app-dock-item">About</a>
-    <a href="work.html" class="app-dock-item">Work</a>
-    <a href="writing.html" class="app-dock-item">Writing</a>
-    <a href="contact.html" class="app-dock-item">Contact</a>
+    <a href="#home" class="app-dock-item is-active" data-dock="home">Home</a>
+    <a href="#about" class="app-dock-item" data-dock="about">About</a>
+    <a href="#work" class="app-dock-item" data-dock="work">Work</a>
+    <a href="#writing" class="app-dock-item" data-dock="writing">Writing</a>
+    <a href="#contact" class="app-dock-item" data-dock="contact">Contact</a>
   </nav>
 
-  <footer class="app-footer">
-    © 2026 Jerry Adams Franklin
-  </footer>
+  <div class="modal-root" id="modalRoot" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-grab" aria-hidden="true"></div>
+      <button type="button" class="modal-close" data-close-modal aria-label="Close">×</button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
 
+  <div class="modal-store" hidden>
+    <div id="modal-about-story">
+      <p class="modal-kicker">About · Story</p>
+      <h3 id="modalTitle" class="modal-title">Building AI that decides, not just predicts</h3>
+      <div class="modal-prose">
+        <p>I'm a Senior AI Engineer specializing in intelligent, decentralized AI systems that power real-world decisions. Most recently at Digital Currency Group, I architected production-ready AI agents with models like Qwen, LLaMA, Gemma, and Phi, orchestrated with LangChain, LangGraph, and Weaviate.</p>
+        <p>One of my proudest projects is VCScout-AI, an end-to-end autonomous agent that analyzed 300+ startup deals and directly drove $450K+ in AI-informed investments.</p>
+        <p>Before DCG, I led TensorFlow CPU performance optimization at Intel and earned the Division Achievement Award. I hold an MS in Data Science from Northeastern University.</p>
+      </div>
+      <div class="modal-stats">
+        <div><strong>5+</strong><span>Years</span></div>
+        <div><strong>$450K+</strong><span>Invested</span></div>
+        <div><strong>7x</strong><span>FLock top</span></div>
+        <div><strong>Top 1</strong><span>AI Arena</span></div>
+      </div>
+      <a class="modal-link" href="about.html">Open full About page →</a>
+    </div>
+
+    <div id="modal-about-skills">
+      <p class="modal-kicker">About · Skills</p>
+      <h3 class="modal-title">What I work with</h3>
+      <div class="modal-prose">
+        <p>Deep expertise across the ML lifecycle, from research and training to production deployment.</p>
+        <p><strong>Focus areas:</strong> LLMs and Generative AI · Agentic AI and RAG · ML Infrastructure · Deep Learning · Federated and Decentralized ML.</p>
+        <p><strong>Stack signals:</strong> Qwen, LLaMA, LoRA/QLoRA, LangChain, Weaviate, GKE, MLflow, PyTorch, TensorFlow, FLock.</p>
+      </div>
+      <a class="modal-link" href="about.html#skills">Open full Skills section →</a>
+    </div>
+
+    <div id="modal-about-education">
+      <p class="modal-kicker">About · Education</p>
+      <h3 class="modal-title">Background</h3>
+      <ul class="modal-list">
+        <li><strong>Northeastern University</strong> · MS Data Science · 2019 – 2022 · GPA 3.8/4.0</li>
+        <li><strong>Dayananda Sagar University</strong> · B.Tech CSE · 2015 – 2019 · GPA 8.2/10</li>
+      </ul>
+      <a class="modal-link" href="about.html#education">Open full Education section →</a>
+    </div>
+
+    <div id="modal-exp-dcg">
+      <p class="modal-kicker">Experience · 2025 – 2026</p>
+      <h3 class="modal-title">AI/ML Engineer IV · Digital Currency Group</h3>
+      <ul class="modal-list">
+        <li>Scaled decentralized AI on FLock with partners including Animoca Brands and Pundi AI.</li>
+        <li>Fine-tuned Qwen, LLaMA, Gemma, Phi on production pipelines (Argo CD, GKE H100, MLflow).</li>
+        <li>Shipped VCScout-AI (LangChain + Qwen-7B + Weaviate) driving $450K+ investment decisions.</li>
+        <li>Spoke at EthCC and NEARCON; featured in official FLock coverage.</li>
+      </ul>
+      <a class="modal-link" href="experience.html">Open full Experience page →</a>
+    </div>
+
+    <div id="modal-exp-foundry">
+      <p class="modal-kicker">Experience · 2024</p>
+      <h3 class="modal-title">AI/ML Engineer · Foundry Digital</h3>
+      <ul class="modal-list">
+        <li>Led federated ML on FLock; top-performing status seven times across tasks.</li>
+        <li>1st place in two major ML hackathons; mentored junior engineers on MLOps.</li>
+        <li>Ran an RIT workshop on ML in crypto with FLock and Akash deployments.</li>
+      </ul>
+      <a class="modal-link" href="experience.html">Open full Experience page →</a>
+    </div>
+
+    <div id="modal-exp-intel">
+      <p class="modal-kicker">Experience · 2021 – 2023</p>
+      <h3 class="modal-title">Deep Learning Engineer · Intel</h3>
+      <ul class="modal-list">
+        <li>Optimized TensorFlow on Windows and MLOps for CPU neural net benchmarks.</li>
+        <li>Improved convolution inference latency by 400% with OneDNN.</li>
+        <li>Released TensorFlow binary with Google; 10,000 downloads for TF 2.11 in a day.</li>
+        <li>Earlier internship: telemetry pipelines, anomaly detection, BERT QA.</li>
+      </ul>
+      <a class="modal-link" href="experience.html">Open full Experience page →</a>
+    </div>
+
+    <div id="modal-exp-earlier">
+      <p class="modal-kicker">Experience · Earlier</p>
+      <h3 class="modal-title">OneBill · Nokia · Northeastern</h3>
+      <ul class="modal-list">
+        <li><strong>OneBill (Senior ML Engineer)</strong> · churn, recommenders, pricing dashboards, LLM query systems.</li>
+        <li><strong>Nokia</strong> · Power BI dashboards and go-to-market analytics.</li>
+        <li><strong>Northeastern</strong> · Graduate Teaching Assistant for Python, ML, and data analysis.</li>
+        <li><strong>OneBill (Intern)</strong> · SOAP/REST APIs and web services.</li>
+      </ul>
+      <a class="modal-link" href="experience.html">Open full Experience page →</a>
+    </div>
+
+    <div id="modal-work-awards">
+      <p class="modal-kicker">Work · Recognition</p>
+      <h3 class="modal-title">Achievements</h3>
+      <ul class="modal-list">
+        <li><strong>Top Performer on FLock</strong> · July 2024 · top status across 7 tasks; EthCC and FLock features.</li>
+        <li><strong>Intel AIA Division Achievement Award</strong> · Nov 2022 · TensorFlow Windows ownership and release.</li>
+      </ul>
+      <a class="modal-link" href="work.html">Open full Work page →</a>
+    </div>
+
+    <div id="modal-work-featured">
+      <p class="modal-kicker">Work · Featured</p>
+      <h3 class="modal-title">Highlighted systems</h3>
+      <ul class="modal-list">
+        <li><strong>VCScout-AI</strong> · LangChain + Qwen-7B + Weaviate analyzing 300+ deals for $450K+ outcomes.</li>
+        <li><strong>Decentralized AI on FLock</strong> · federated models with EthCC and FLock coverage.</li>
+      </ul>
+      <a class="modal-link" href="work.html#featured">Open featured work →</a>
+    </div>
+
+    <div id="modal-work-projects">
+      <p class="modal-kicker">Work · Projects</p>
+      <h3 class="modal-title">Other work</h3>
+      <ul class="modal-list">
+        <li>Brain Tumor Detection · CNN, 0.96 sensitivity</li>
+        <li>Music Sentiment Analysis · transformer NLP</li>
+        <li>Amazon Reviews recommender · MAE 0.096</li>
+        <li>Preeclampsia prediction · 96% accuracy with SMOTE and SSL</li>
+        <li>Diabetes prediction in R · 0.92 sensitivity</li>
+      </ul>
+      <a class="modal-link" href="work.html#projects">Open projects →</a>
+    </div>
+
+    <div id="modal-writing-pubs">
+      <p class="modal-kicker">Writing · Publications</p>
+      <h3 class="modal-title">Research papers</h3>
+      <ul class="modal-list">
+        <li><strong>Adaptive Phase-Switching for Communication-Efficient Federated LoRA Fine-Tuning</strong> · Preprint · Under review at IEEE OJ-CS · arXiv:2609.13512</li>
+        <li><strong>Fine-Tuning LLMs in Resource-Constrained Environments</strong> · Under review at PeerJ Computer Science (Q1)</li>
+      </ul>
+      <p class="modal-note">Published as Jerry Adams Franklin, Independent Researcher.</p>
+      <a class="modal-link" href="https://arxiv.org/abs/2609.13512" target="_blank" rel="noopener noreferrer">Open arXiv preprint →</a>
+      <a class="modal-link" href="writing.html">Open Writing page →</a>
+    </div>
+
+    <div id="modal-writing-trade">
+      <p class="modal-kicker">Writing · Trade</p>
+      <h3 class="modal-title">QLoRA Explained</h3>
+      <div class="modal-prose">
+        <p>HackerNoon · May 2026. NF4 quantization, double quantization, and paged optimizers for memory-efficient LLM fine-tuning.</p>
+      </div>
+      <a class="modal-link" href="https://hackernoon.com/qlora-explained-the-memory-compression-breakthrough" target="_blank" rel="noopener noreferrer">Read on HackerNoon →</a>
+    </div>
+
+    <div id="modal-writing-review">
+      <p class="modal-kicker">Writing · Peer review</p>
+      <h3 class="modal-title">Invited reviewer</h3>
+      <ul class="modal-list">
+        <li><strong>ACM Computing Surveys</strong> · 2026 · Q1, Impact Factor 23.8</li>
+        <li><strong>Journal of Supercomputing</strong> · May 2026 · Springer Nature</li>
+      </ul>
+      <a class="modal-link" href="writing.html">Open Writing page →</a>
+    </div>
+
+    <div id="modal-writing-press">
+      <p class="modal-kicker">Writing · Press</p>
+      <h3 class="modal-title">Science Times feature</h3>
+      <div class="modal-prose">
+        <p><strong>The Autonomy Threshold</strong> · September 14, 2026 · David Thompson.</p>
+        <p>Coverage of auditable AI for high-stakes financial analysis, federated learning, and human oversight in regulated environments.</p>
+      </div>
+      <a class="modal-link" href="https://www.sciencetimes.com/articles/62593/20260914/autonomy-threshold-how-enterprise-ai-moving-assistant-analyst.htm" target="_blank" rel="noopener">Read the article →</a>
+    </div>
+
+    <div id="modal-speak-talks">
+      <p class="modal-kicker">Speaking · Talks</p>
+      <h3 class="modal-title">Invited talks</h3>
+      <ul class="modal-list">
+        <li><strong>AI Risk Summit</strong> · Aug 2026 · Federated learning as AI risk infrastructure</li>
+        <li><strong>NEARCON</strong> · Feb 2026 · Training 7B LLMs on edge devices</li>
+        <li><strong>EthCC Brussels</strong> · July 2024 · Decentralized AI on FLock</li>
+        <li><strong>VIT-AP</strong> · April 2026 · Production AI guest lecture</li>
+      </ul>
+      <a class="modal-link" href="speaking.html">Open Speaking page →</a>
+    </div>
+
+    <div id="modal-speak-mentor">
+      <p class="modal-kicker">Speaking · Mentoring</p>
+      <h3 class="modal-title">Mentor roles</h3>
+      <ul class="modal-list">
+        <li><strong>USAII Global AI Hackathon 2026</strong> · 20,000+ students across 50+ countries</li>
+        <li><strong>WiCS at ASU × Opportunity Hack</strong> · nonprofit tools in 24 hours</li>
+      </ul>
+      <a class="modal-link" href="speaking.html">Open Speaking page →</a>
+    </div>
+
+    <div id="modal-speak-judge">
+      <p class="modal-kicker">Speaking · Judging</p>
+      <h3 class="modal-title">Judge panels</h3>
+      <ul class="modal-list">
+        <li><strong>UC Berkeley AI Hackathon 2026</strong> · 1,300+ participants</li>
+        <li><strong>Web Data UNLOCKED</strong> · lablab.ai × Bright Data</li>
+      </ul>
+      <a class="modal-link" href="speaking.html">Open Speaking page →</a>
+    </div>
+
+    <div id="modal-contact">
+      <p class="modal-kicker">Contact</p>
+      <h3 class="modal-title">Let's connect</h3>
+      <div class="modal-contact-links">
+        <a href="mailto:franklin.je@northeastern.edu">Email</a>
+        <a href="https://www.linkedin.com/in/jerry-adams-franklin/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/jerryadamsfranklin" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://orcid.org/0009-0006-8470-8349" target="_blank" rel="noopener noreferrer">ORCID</a>
+      </div>
+      <p class="modal-note">Fairport, NY 14450 · franklin.je@northeastern.edu</p>
+      <a class="modal-link" href="contact.html">Open Contact page →</a>
+    </div>
+  </div>
+
+  <footer class="app-footer">© 2026 Jerry Adams Franklin</footer>
   <script src="assets/js/site.js" defer></script>
 </body>
 </html>
