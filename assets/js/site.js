@@ -4,14 +4,6 @@
   if (!file) file = 'index.html';
   var isHome = file === 'index.html' || file === '' || /\/$/.test(path);
 
-  // Home now hosts the original section anchors again; only redirect if truly missing.
-  var hashRedirects = {};
-
-  if (isHome && window.location.hash && hashRedirects[window.location.hash]) {
-    window.location.replace(hashRedirects[window.location.hash]);
-    return;
-  }
-
   document.documentElement.classList.add('js');
   requestAnimationFrame(function() {
     document.body.classList.add('page-enter');
@@ -21,31 +13,6 @@
     document.body.classList.remove('page-enter');
     document.body.removeEventListener('animationend', onPageEnter);
   });
-
-  var pageKey = 'home';
-  if (file.indexOf('about') === 0) pageKey = 'about';
-  else if (file.indexOf('experience') === 0) pageKey = 'experience';
-  else if (file.indexOf('work') === 0) pageKey = 'work';
-  else if (file.indexOf('writing') === 0) pageKey = 'writing';
-  else if (file.indexOf('speaking') === 0) pageKey = 'speaking';
-  else if (file.indexOf('contact') === 0) pageKey = 'contact';
-
-  if (!isHome) {
-    document.querySelectorAll('.nav-links a[data-nav]').forEach(function(a) {
-      a.classList.toggle('active', a.getAttribute('data-nav') === pageKey);
-    });
-    document.querySelectorAll('.app-dock-item').forEach(function(a) {
-      var href = a.getAttribute('href') || '';
-      var on = false;
-      if (pageKey === 'about' || pageKey === 'experience') on = href.indexOf('about.html') !== -1;
-      if (pageKey === 'work') on = href.indexOf('work.html') !== -1;
-      if (pageKey === 'writing') on = href.indexOf('writing.html') !== -1;
-      if (pageKey === 'contact') on = href.indexOf('contact.html') !== -1;
-      a.classList.toggle('is-active', on);
-      if (on) a.setAttribute('aria-current', 'page');
-      else a.removeAttribute('aria-current');
-    });
-  }
 
   var nav = document.getElementById('nav');
   var toggle = document.getElementById('navToggle');
