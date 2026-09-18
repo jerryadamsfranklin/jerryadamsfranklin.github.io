@@ -124,46 +124,73 @@
   }
 
   // Home section scroll spy for dock + nav
-  if (isHome && 'IntersectionObserver' in window) {
+  if (isHome) {
     var sectionIds = [
       'home', 'about', 'skills', 'experience', 'education',
       'achievements', 'speaking', 'publications', 'press',
       'featured', 'projects', 'contact'
     ];
-    var sectionMap = {
-      home: 'home',
-      about: 'about',
-      skills: 'about',
-      experience: 'about',
-      education: 'about',
-      achievements: 'work',
-      featured: 'work',
-      projects: 'work',
-      publications: 'writing',
-      press: 'writing',
-      speaking: 'writing',
-      contact: 'contact'
-    };
-    var spy = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (!entry.isIntersecting) return;
-        var id = entry.target.id;
-        var dockKey = sectionMap[id] || id;
-        document.querySelectorAll('.app-dock-item[data-dock]').forEach(function(a) {
-          var on = a.getAttribute('data-dock') === dockKey;
-          a.classList.toggle('is-active', on);
-          if (on) a.setAttribute('aria-current', 'page');
-          else a.removeAttribute('aria-current');
-        });
-        document.querySelectorAll('.nav-links a[data-nav]').forEach(function(a) {
-          a.classList.toggle('active', a.getAttribute('data-nav') === id);
-        });
+    var spyCurrent = '';
+
+    function setSpyActive(id) {
+      if (!id || id === spyCurrent) return;
+      spyCurrent = id;
+      var dock = document.getElementById('appDock');
+      var track = dock ? dock.querySelector('.app-dock-track') : null;
+      document.querySelectorAll('.app-dock-item[data-dock]').forEach(function(a) {
+        var on = a.getAttribute('data-dock') === id;
+        a.classList.toggle('is-active', on);
+        if (on) {
+          a.setAttribute('aria-current', 'page');
+          // Center active chip inside the dock track only (never scroll the page)
+          if (track) {
+            var left = a.offsetLeft - (track.clientWidth / 2) + (a.offsetWidth / 2);
+            if (typeof track.scrollTo === 'function') {
+              track.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
+            } else {
+              track.scrollLeft = Math.max(0, left);
+            }
+          }
+        } else {
+          a.removeAttribute('aria-current');
+        }
       });
-    }, { threshold: 0.28, rootMargin: '-18% 0px -50% 0px' });
-    sectionIds.forEach(function(id) {
-      var el = document.getElementById(id);
-      if (el) spy.observe(el);
-    });
+      document.querySelectorAll('.nav-links a[data-nav]').forEach(function(a) {
+        a.classList.toggle('active', a.getAttribute('data-nav') === id);
+      });
+    }
+
+    function onSpyScroll() {
+      var marker = Math.round(window.innerHeight * 0.55);
+      var current = sectionIds[0];
+      for (var i = 0; i < sectionIds.length; i++) {
+        var el = document.getElementById(sectionIds[i]);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= marker) current = sectionIds[i];
+      }
+
+      // Contact is short and last; activate as soon as its heading enters view.
+      var contactEl = document.getElementById('contact');
+      if (contactEl) {
+        var contactTop = contactEl.getBoundingClientRect().top;
+        if (contactTop <= window.innerHeight * 0.72) current = 'contact';
+      }
+
+      var scrollBottom = window.scrollY + window.innerHeight;
+      var docHeight = Math.max(
+        document.documentElement.scrollHeight,
+        document.body.scrollHeight
+      );
+      if (scrollBottom >= docHeight - Math.max(180, window.innerHeight * 0.22)) {
+        current = 'contact';
+      }
+
+      setSpyActive(current);
+    }
+
+    window.addEventListener('scroll', onSpyScroll, { passive: true });
+    window.addEventListener('resize', onSpyScroll);
+    onSpyScroll();
   }
 
   // Modal system
