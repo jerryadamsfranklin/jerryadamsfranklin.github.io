@@ -1,1 +1,5 @@
 .DS_Store
+
+# Logo generator tooling
+.tools/
+assets/logos/_src/

@@ -76,19 +76,54 @@
   });
 
   var reveals = document.querySelectorAll('.reveal');
+  var revealObserver = null;
+
+  function revealNow(el) {
+    if (!el) return;
+    el.classList.add('visible');
+    if (revealObserver && el.classList.contains('home-sec')) {
+      try { revealObserver.unobserve(el); } catch (err) {}
+    }
+  }
+
+  function revealByHash(hash) {
+    if (!hash || hash.charAt(0) !== '#') return;
+    var target = document.querySelector(hash);
+    if (!target) return;
+    // Walk up so nested anchors (talk-*, project-*) still light their section
+    var node = target;
+    while (node && node !== document.body) {
+      if (node.classList && node.classList.contains('reveal')) {
+        revealNow(node);
+        break;
+      }
+      node = node.parentElement;
+    }
+    revealNow(target);
+  }
+
   if ('IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(function(entries) {
+    revealObserver = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (!entry.isIntersecting) return;
-        entry.target.classList.add('visible');
-        // Fire once per section so portal entrances stay crisp
-        if (entry.target.classList.contains('home-sec')) observer.unobserve(entry.target);
+        revealNow(entry.target);
       });
-    }, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
-    reveals.forEach(function(el) { observer.observe(el); });
+    }, { threshold: 0.05, rootMargin: '0px 0px -4% 0px' });
+    reveals.forEach(function(el) { revealObserver.observe(el); });
   } else {
     reveals.forEach(function(el) { el.classList.add('visible'); });
   }
+
+  // Eager-reveal on dock/nav jumps so tall sections are never a blank void
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function() {
+      revealByHash(a.getAttribute('href'));
+    });
+  });
+  if (window.location.hash) revealByHash(window.location.hash);
+  window.addEventListener('hashchange', function() {
+    revealByHash(window.location.hash);
+  });
 
   // Home section scroll spy for dock + nav
   if (isHome) {
@@ -216,6 +251,51 @@
       }, 60);
     }
   }
+
+  // Mobile: collapse long Experience bullets behind Show more
+  (function initTimelineMore() {
+    var mq = window.matchMedia ? window.matchMedia('(max-width: 768px)') : null;
+    function syncButtons() {
+      var mobile = !mq || mq.matches;
+      document.querySelectorAll('.timeline-item').forEach(function(item) {
+        var list = item.querySelector('.timeline-bullets.is-collapsible');
+        var btn = item.querySelector('.timeline-more');
+        if (!list || !btn) return;
+        var extras = list.querySelectorAll('.timeline-bullet-extra');
+        if (!extras.length) {
+          btn.hidden = true;
+          return;
+        }
+        if (!mobile) {
+          list.classList.remove('is-expanded');
+          btn.hidden = true;
+          btn.setAttribute('aria-expanded', 'false');
+          btn.textContent = 'Show more';
+          return;
+        }
+        btn.hidden = false;
+        var open = list.classList.contains('is-expanded');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        btn.textContent = open ? 'Show less' : 'Show more';
+      });
+    }
+    document.querySelectorAll('.timeline-more').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item = btn.closest('.timeline-item');
+        var list = item && item.querySelector('.timeline-bullets.is-collapsible');
+        if (!list) return;
+        list.classList.toggle('is-expanded');
+        var open = list.classList.contains('is-expanded');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        btn.textContent = open ? 'Show less' : 'Show more';
+      });
+    });
+    syncButtons();
+    if (mq) {
+      if (mq.addEventListener) mq.addEventListener('change', syncButtons);
+      else if (mq.addListener) mq.addListener(syncButtons);
+    }
+  })();
 
   // Digital theme: typing/counters on home; particles on all digital pages
   if (document.body.classList.contains('digital-theme')) {
