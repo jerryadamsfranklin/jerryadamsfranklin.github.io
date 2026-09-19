@@ -1777,16 +1777,16 @@
     }
     .timeline-item:last-child { padding-bottom: 0; }
     .reveal.visible .timeline-item {
-      animation: fadeUpScale 0.65s var(--ease-premium) forwards;
+      animation: fadeUpScale 0.8s var(--ease-premium) forwards;
     }
-    .reveal.visible .timeline-item:nth-child(1) { animation-delay: 0s; }
-    .reveal.visible .timeline-item:nth-child(2) { animation-delay: 0.08s; }
-    .reveal.visible .timeline-item:nth-child(3) { animation-delay: 0.16s; }
-    .reveal.visible .timeline-item:nth-child(4) { animation-delay: 0.24s; }
-    .reveal.visible .timeline-item:nth-child(5) { animation-delay: 0.32s; }
-    .reveal.visible .timeline-item:nth-child(6) { animation-delay: 0.4s; }
-    .reveal.visible .timeline-item:nth-child(7) { animation-delay: 0.48s; }
-    .reveal.visible .timeline-item:nth-child(8) { animation-delay: 0.56s; }
+    .reveal.visible .timeline-item:nth-child(1) { animation-delay: 0.7s; }
+    .reveal.visible .timeline-item:nth-child(2) { animation-delay: 0.9s; }
+    .reveal.visible .timeline-item:nth-child(3) { animation-delay: 1.1s; }
+    .reveal.visible .timeline-item:nth-child(4) { animation-delay: 1.3s; }
+    .reveal.visible .timeline-item:nth-child(5) { animation-delay: 1.5s; }
+    .reveal.visible .timeline-item:nth-child(6) { animation-delay: 1.7s; }
+    .reveal.visible .timeline-item:nth-child(7) { animation-delay: 1.9s; }
+    .reveal.visible .timeline-item:nth-child(8) { animation-delay: 2.1s; }
     .timeline-dot {
       position: absolute;
       left: -2rem;
@@ -3577,19 +3577,19 @@
     #skills.visible .skill-row:nth-child(6) { animation-delay: 0.68s; }
 
     #experience.visible .timeline-item.anim-item:nth-child(odd) {
-      animation: dockLeft 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation: dockLeft 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
     #experience.visible .timeline-item.anim-item:nth-child(even) {
-      animation: dockRight 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation: dockRight 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
-    #experience.visible .timeline-item.anim-item:nth-child(1) { animation-delay: 0s; }
-    #experience.visible .timeline-item.anim-item:nth-child(2) { animation-delay: 0.08s; }
-    #experience.visible .timeline-item.anim-item:nth-child(3) { animation-delay: 0.16s; }
-    #experience.visible .timeline-item.anim-item:nth-child(4) { animation-delay: 0.24s; }
-    #experience.visible .timeline-item.anim-item:nth-child(5) { animation-delay: 0.32s; }
-    #experience.visible .timeline-item.anim-item:nth-child(6) { animation-delay: 0.4s; }
-    #experience.visible .timeline-item.anim-item:nth-child(7) { animation-delay: 0.48s; }
-    #experience.visible .timeline-item.anim-item:nth-child(8) { animation-delay: 0.56s; }
+    #experience.visible .timeline-item.anim-item:nth-child(1) { animation-delay: 0.28s; }
+    #experience.visible .timeline-item.anim-item:nth-child(2) { animation-delay: 0.38s; }
+    #experience.visible .timeline-item.anim-item:nth-child(3) { animation-delay: 0.48s; }
+    #experience.visible .timeline-item.anim-item:nth-child(4) { animation-delay: 0.58s; }
+    #experience.visible .timeline-item.anim-item:nth-child(5) { animation-delay: 0.68s; }
+    #experience.visible .timeline-item.anim-item:nth-child(6) { animation-delay: 0.78s; }
+    #experience.visible .timeline-item.anim-item:nth-child(7) { animation-delay: 0.88s; }
+    #experience.visible .timeline-item.anim-item:nth-child(8) { animation-delay: 0.98s; }
 
     #education.visible .anim-item { animation: pageUnfold 1s cubic-bezier(0.22, 1, 0.36, 1) both; }
     #education.visible .anim-item:nth-child(1) { animation-delay: 0.3s; }

@@ -76,54 +76,92 @@
   });
 
   var reveals = document.querySelectorAll('.reveal');
-  var revealObserver = null;
-
-  function revealNow(el) {
-    if (!el) return;
-    el.classList.add('visible');
-    if (revealObserver && el.classList.contains('home-sec')) {
-      try { revealObserver.unobserve(el); } catch (err) {}
-    }
-  }
-
-  function revealByHash(hash) {
-    if (!hash || hash.charAt(0) !== '#') return;
-    var target = document.querySelector(hash);
-    if (!target) return;
-    // Walk up so nested anchors (talk-*, project-*) still light their section
-    var node = target;
-    while (node && node !== document.body) {
-      if (node.classList && node.classList.contains('reveal')) {
-        revealNow(node);
-        break;
-      }
-      node = node.parentElement;
-    }
-    revealNow(target);
-  }
-
   if ('IntersectionObserver' in window) {
-    revealObserver = new IntersectionObserver(function(entries) {
+    // Reveal only when the SECTION HEADING is in the upper half.
+    // Observing the whole tall section would fire as soon as mid-body crossed the
+    // band (while the user was still reading the previous section) and spend the
+    // entrance animation off-screen — desktop symptom: only a few sections animate.
+    var observer;
+
+    function headingInTrigger(el) {
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      var rect = el.getBoundingClientRect();
+      // Heading has reached the upper half (or we've scrolled into the section).
+      // Do NOT use whole-section intersection — tall mid-body hits were spending
+      // animations while the user was still on the previous section.
+      if (rect.bottom < 64) return false;
+      return rect.top < vh * 0.48;
+    }
+
+    function revealSection(el, replay) {
+      if (!el) return;
+      if (!replay && el.classList.contains('visible')) return;
+      if (replay && el.classList.contains('visible')) {
+        el.classList.remove('visible');
+        void el.offsetWidth;
+      }
+      el.classList.add('visible');
+      if (observer && el.classList.contains('home-sec')) {
+        try { observer.unobserve(el); } catch (err) {}
+      }
+    }
+
+    function tryReveal(el, replay) {
+      if (!el) return;
+      if (!headingInTrigger(el)) return;
+      revealSection(el, replay);
+    }
+
+    // Root = upper ~45% of viewport so the heading must enter before we even get a hit.
+    // Scroll handler still re-checks — IO alone won't re-fire while staying intersecting.
+    observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (!entry.isIntersecting) return;
-        revealNow(entry.target);
+        tryReveal(entry.target, false);
       });
-    }, { threshold: 0.05, rootMargin: '0px 0px -4% 0px' });
-    reveals.forEach(function(el) { revealObserver.observe(el); });
+    }, { threshold: 0, rootMargin: '0px 0px -55% 0px' });
+    reveals.forEach(function(el) { observer.observe(el); });
+
+    function revealVisibleSections() {
+      reveals.forEach(function(el) {
+        if (el.classList.contains('visible')) return;
+        tryReveal(el, false);
+      });
+    }
+    window.addEventListener('scroll', revealVisibleSections, { passive: true });
+    window.addEventListener('resize', revealVisibleSections);
+    setTimeout(revealVisibleSections, 120);
+
+    function sectionFromHash(hash) {
+      if (!hash || hash.charAt(0) !== '#') return null;
+      var target = document.querySelector(hash);
+      if (!target) return null;
+      var node = target;
+      while (node && node !== document.body) {
+        if (node.classList && node.classList.contains('reveal')) return node;
+        node = node.parentElement;
+      }
+      return null;
+    }
+
+    // Dock / nav: wait for smooth-scroll to settle, then play (or replay) on-screen
+    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+      a.addEventListener('click', function() {
+        var sec = sectionFromHash(a.getAttribute('href'));
+        if (!sec || sec.id === 'home') return;
+        var shouldReplay = sec.classList.contains('visible');
+        setTimeout(function() { tryReveal(sec, shouldReplay); }, 280);
+        setTimeout(function() { tryReveal(sec, false); }, 600);
+        setTimeout(function() {
+          if (!sec.classList.contains('visible') && headingInTrigger(sec)) {
+            revealSection(sec, false);
+          }
+        }, 900);
+      });
+    });
   } else {
     reveals.forEach(function(el) { el.classList.add('visible'); });
   }
-
-  // Eager-reveal on dock/nav jumps so tall sections are never a blank void
-  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-    a.addEventListener('click', function() {
-      revealByHash(a.getAttribute('href'));
-    });
-  });
-  if (window.location.hash) revealByHash(window.location.hash);
-  window.addEventListener('hashchange', function() {
-    revealByHash(window.location.hash);
-  });
 
   // Home section scroll spy for dock + nav
   if (isHome) {
