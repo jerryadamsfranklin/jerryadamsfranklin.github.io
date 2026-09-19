@@ -77,20 +77,51 @@
 
   var reveals = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
-    // Reveal only when the SECTION HEADING is in the upper half.
-    // Observing the whole tall section would fire as soon as mid-body crossed the
-    // band (while the user was still reading the previous section) and spend the
-    // entrance animation off-screen — desktop symptom: only a few sections animate.
+    // Section headers unlock when the heading reaches the upper half.
+    // Individual cards/rows unlock via itemObserver as they scroll into view,
+    // so entrances follow the scroll instead of firing the whole section at once.
     var observer;
 
     function headingInTrigger(el) {
       var vh = window.innerHeight || document.documentElement.clientHeight;
       var rect = el.getBoundingClientRect();
-      // Heading has reached the upper half (or we've scrolled into the section).
-      // Do NOT use whole-section intersection — tall mid-body hits were spending
-      // animations while the user was still on the previous section.
       if (rect.bottom < 64) return false;
       return rect.top < vh * 0.48;
+    }
+
+    function sectionItems(sec) {
+      if (!sec || !sec.querySelectorAll) return [];
+      return sec.querySelectorAll('.anim-item, .about-text p, .contact-links a');
+    }
+
+    function showItem(el) {
+      if (!el || el.classList.contains('is-shown')) return;
+      el.classList.add('is-shown');
+    }
+
+    function showInViewItems(sec) {
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      sectionItems(sec).forEach(function(item) {
+        var r = item.getBoundingClientRect();
+        if (r.top < vh * 0.88 && r.bottom > vh * 0.08) showItem(item);
+      });
+    }
+
+    var itemObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting) return;
+        showItem(entry.target);
+        itemObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.14, rootMargin: '0px 0px -12% 0px' });
+
+    function bindProgressiveItems() {
+      document.querySelectorAll(
+        '.home-blend .anim-item, .home-blend .about-text p, .home-blend .contact-links a'
+      ).forEach(function(el) {
+        if (el.classList.contains('is-shown')) return;
+        try { itemObserver.observe(el); } catch (err) {}
+      });
     }
 
     function revealSection(el, replay) {
@@ -98,9 +129,12 @@
       if (!replay && el.classList.contains('visible')) return;
       if (replay && el.classList.contains('visible')) {
         el.classList.remove('visible');
+        sectionItems(el).forEach(function(item) { item.classList.remove('is-shown'); });
         void el.offsetWidth;
       }
       el.classList.add('visible');
+      showInViewItems(el);
+      bindProgressiveItems();
       if (observer && el.classList.contains('home-sec')) {
         try { observer.unobserve(el); } catch (err) {}
       }
@@ -112,8 +146,6 @@
       revealSection(el, replay);
     }
 
-    // Root = upper ~45% of viewport so the heading must enter before we even get a hit.
-    // Scroll handler still re-checks — IO alone won't re-fire while staying intersecting.
     observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (!entry.isIntersecting) return;
@@ -121,6 +153,7 @@
       });
     }, { threshold: 0, rootMargin: '0px 0px -55% 0px' });
     reveals.forEach(function(el) { observer.observe(el); });
+    bindProgressiveItems();
 
     function revealVisibleSections() {
       reveals.forEach(function(el) {
@@ -155,12 +188,20 @@
         setTimeout(function() {
           if (!sec.classList.contains('visible') && headingInTrigger(sec)) {
             revealSection(sec, false);
+          } else if (sec.classList.contains('visible')) {
+            showInViewItems(sec);
+            bindProgressiveItems();
           }
         }, 900);
       });
     });
   } else {
-    reveals.forEach(function(el) { el.classList.add('visible'); });
+    reveals.forEach(function(el) {
+      el.classList.add('visible');
+      el.querySelectorAll('.anim-item, .about-text p, .contact-links a').forEach(function(item) {
+        item.classList.add('is-shown');
+      });
+    });
   }
 
   // Home section scroll spy for dock + nav

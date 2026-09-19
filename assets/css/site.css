@@ -3324,6 +3324,10 @@
       opacity: 0;
       will-change: transform, opacity, filter, clip-path;
     }
+    .home-blend .about-text p,
+    .home-blend .contact-links a {
+      opacity: 0;
+    }
     .home-blend .home-sec .section-label,
     .home-blend .home-sec .section-title,
     .home-blend .home-sec .skills-subtitle,
@@ -3643,13 +3647,63 @@
     #contact.visible .contact-links a:nth-child(4) { animation-delay: 0.6s; }
     #contact.visible .contact-links a:nth-child(5) { animation-delay: 0.7s; }
 
+    /* Hold item entrances until each card scrolls into view (.is-shown).
+       Section headers / portal still run on .visible; scroll timing replaces stagger. */
+    .home-blend .anim-item:not(.is-shown),
+    .home-blend .about-text p:not(.is-shown),
+    .home-blend .reveal.visible .timeline-item:not(.is-shown),
+    .home-blend .reveal.visible .about-stats .stat-card:not(.is-shown),
+    .home-blend .reveal.visible .about-text p:not(.is-shown),
+    .home-blend #contact.visible .contact-links a:not(.is-shown),
+    .home-blend #home.reveal.visible .hero-stat.anim-item:not(.is-shown),
+    .home-blend #home.reveal.visible .hero-stat.anim-item:not(.is-shown) strong,
+    .home-blend #home.reveal.visible .hero-stat.anim-item:not(.is-shown) > span:last-of-type {
+      animation: none !important;
+      opacity: 0 !important;
+    }
+
+    .home-blend .anim-item.is-shown,
+    .home-blend .about-text p.is-shown,
+    .home-blend #contact.visible .contact-links a.is-shown,
+    .home-blend #skills.visible .skill-row.is-shown,
+    .home-blend #experience.visible .timeline-item.anim-item.is-shown,
+    .home-blend #about.visible .anim-item.is-shown,
+    .home-blend #education.visible .anim-item.is-shown,
+    .home-blend #achievements.visible .anim-item.is-shown,
+    .home-blend #featured.visible .anim-item.is-shown,
+    .home-blend #projects.visible .anim-item.is-shown,
+    .home-blend #publications.visible .anim-item.is-shown,
+    .home-blend #press.visible .anim-item.is-shown,
+    .home-blend #speaking.visible .anim-item.is-shown {
+      animation-delay: 0.06s !important;
+    }
+
+    /* Hero highlights often share the first viewport — keep a light zipper stagger */
+    .home-blend #home.reveal.visible .hero-stat.anim-item.is-shown:nth-child(1) { animation-delay: 0.08s !important; }
+    .home-blend #home.reveal.visible .hero-stat.anim-item.is-shown:nth-child(2) { animation-delay: 0.18s !important; }
+    .home-blend #home.reveal.visible .hero-stat.anim-item.is-shown:nth-child(3) { animation-delay: 0.28s !important; }
+    .home-blend #home.reveal.visible .hero-stat.anim-item.is-shown:nth-child(4) { animation-delay: 0.38s !important; }
+    .home-blend #home.reveal.visible .hero-stat.anim-item.is-shown:nth-child(5) { animation-delay: 0.48s !important; }
+    .home-blend #home.reveal.visible .hero-stat.anim-item.is-shown:nth-child(1) strong { animation-delay: 0.22s !important; }
+    .home-blend #home.reveal.visible .hero-stat.anim-item.is-shown:nth-child(2) strong { animation-delay: 0.32s !important; }
+    .home-blend #home.reveal.visible .hero-stat.anim-item.is-shown:nth-child(3) strong { animation-delay: 0.42s !important; }
+    .home-blend #home.reveal.visible .hero-stat.anim-item.is-shown:nth-child(4) strong { animation-delay: 0.52s !important; }
+    .home-blend #home.reveal.visible .hero-stat.anim-item.is-shown:nth-child(5) strong { animation-delay: 0.62s !important; }
+    .home-blend #home.reveal.visible .hero-stat.anim-item.is-shown:nth-child(1) > span:last-of-type { animation-delay: 0.34s !important; }
+    .home-blend #home.reveal.visible .hero-stat.anim-item.is-shown:nth-child(2) > span:last-of-type { animation-delay: 0.44s !important; }
+    .home-blend #home.reveal.visible .hero-stat.anim-item.is-shown:nth-child(3) > span:last-of-type { animation-delay: 0.54s !important; }
+    .home-blend #home.reveal.visible .hero-stat.anim-item.is-shown:nth-child(4) > span:last-of-type { animation-delay: 0.64s !important; }
+    .home-blend #home.reveal.visible .hero-stat.anim-item.is-shown:nth-child(5) > span:last-of-type { animation-delay: 0.74s !important; }
+
     @media (prefers-reduced-motion: reduce) {
       .home-blend .anim-item,
+      .home-blend .about-text p,
       .home-blend .home-sec .section-label,
       .home-blend .home-sec .section-title,
       .home-blend .home-sec .skills-subtitle,
       .home-blend .home-sec .home-more,
-      #contact.visible .contact-links a {
+      #contact.visible .contact-links a,
+      .home-blend .contact-links a {
         opacity: 1 !important;
         transform: none !important;
         filter: none !important;
