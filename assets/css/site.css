@@ -4515,6 +4515,19 @@
       text-align: right;
       white-space: nowrap;
     }
+    /* Publications: venue/status can be long — stack under the title so cards stay uniform */
+    #publications .achievement-item .title:has(.card-logo) {
+      grid-template-columns: auto minmax(0, 1fr);
+    }
+    #publications .achievement-item .title:has(.card-logo) .date {
+      grid-column: 2;
+      grid-row: 2;
+      justify-self: start;
+      text-align: left;
+      white-space: normal;
+      line-height: 1.45;
+      max-width: 42rem;
+    }
     @media (max-width: 640px) {
       .achievement-item .title:has(.card-logo) {
         grid-template-columns: auto minmax(0, 1fr);
