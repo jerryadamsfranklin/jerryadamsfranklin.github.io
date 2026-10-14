@@ -2022,7 +2022,7 @@
       padding-bottom: 2.35rem;
     }
     a.achievement-item.achievement-item-source-arxiv::after {
-      content: 'IEEE OJ-CS ↗';
+      content: 'arXiv ↗';
       position: absolute;
       right: 1.5rem;
       bottom: 1.25rem;
