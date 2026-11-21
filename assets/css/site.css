@@ -4542,11 +4542,11 @@
       text-align: right;
       white-space: nowrap;
     }
-    /* Publications: venue/status can be long — stack under the title so cards stay uniform */
-    #publications .achievement-item .title:has(.card-logo) {
+    /* Research papers only: venue/status can be long — stack under the title */
+    #publications .publications-stack > .writing-block:first-child .achievement-item .title:has(.card-logo) {
       grid-template-columns: auto minmax(0, 1fr);
     }
-    #publications .achievement-item .title:has(.card-logo) .date {
+    #publications .publications-stack > .writing-block:first-child .achievement-item .title:has(.card-logo) .date {
       grid-column: 2;
       grid-row: 2;
       justify-self: start;
@@ -4564,6 +4564,17 @@
         grid-row: 2;
         justify-self: start;
         text-align: left;
+      }
+      /* Trade articles + Peer reviewer: keep short dates on the right */
+      #publications .publications-stack > .writing-block:not(:first-child) .achievement-item .title:has(.card-logo) {
+        grid-template-columns: auto minmax(0, 1fr) auto;
+      }
+      #publications .publications-stack > .writing-block:not(:first-child) .achievement-item .title:has(.card-logo) .date {
+        grid-column: 3;
+        grid-row: 1;
+        justify-self: end;
+        text-align: right;
+        white-space: nowrap;
       }
     }
 
