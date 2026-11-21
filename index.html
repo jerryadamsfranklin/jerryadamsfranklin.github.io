@@ -348,14 +348,15 @@
     <p class="section-label">// Achievements</p>
     <h2 class="section-title">Recognition</h2>
     <div class="achievements-list">
-      <a href="https://www.flock.io/blog/flock-interviews-top-ai-arena-user-from-foundry" target="_blank" rel="noopener noreferrer" class="achievement-item anim-item">
+      <div class="achievement-item anim-item achievement-item-card-link">
+        <a href="https://www.flock.io/blog/flock-interviews-top-ai-arena-user-from-foundry" class="achievement-card-hit" target="_blank" rel="noopener noreferrer" aria-label="Open FLock interview: Top Performer on the FLock Network"></a>
         <div class="title">
           <img class="card-logo" src="assets/logos/flock.png" alt="" width="32" height="32" loading="lazy" decoding="async">
           <span class="title-text">Top Performer on the FLock Network</span>
           <span class="date">July 2024</span>
         </div>
-        <p class="desc">Achieved top-performing model status 7 times across 7 distinct tasks on the blockchain-based FLock network. Featured internationally at EthCC Brussels and in the official FLock blog interview, tweet, and YouTube segment.</p>
-      </a>
+        <p class="desc">Achieved top-performing model status 7 times across 7 distinct tasks on the blockchain-based FLock network. Featured internationally at EthCC Brussels and in the official FLock blog interview, tweet, and YouTube segment. <a href="https://www.flock.io/blog/flock-interviews-top-ai-arena-user-from-foundry" target="_blank" rel="noopener noreferrer">FLock Interview</a> · <a href="https://x.com/flock_io/status/1823411402666569790" target="_blank" rel="noopener noreferrer">Announcement</a></p>
+      </div>
       <a href="https://www.linkedin.com/in/jerry-adams-franklin/overlay/1635555036131/single-media-viewer/?profileId=ACoAACnkCCsBT722Vw_kHd1OX1cbKCfjjyGC5ls" target="_blank" rel="noopener noreferrer" class="achievement-item anim-item" id="award-intel">
         <div class="title">
           <img class="card-logo" src="assets/logos/intel.png" alt="" width="32" height="32" loading="lazy" decoding="async">
@@ -490,30 +491,32 @@
         <h3>Publications</h3>
         <p class="desc">Published as Jerry Adams Franklin, Independent Researcher.</p>
         <div class="achievements-list">
-          <div class="achievement-item anim-item achievement-item-static">
+          <div class="achievement-item anim-item achievement-item-card-link">
+            <a href="https://doi.org/10.5281/zenodo.23523842" class="achievement-card-hit" target="_blank" rel="noopener noreferrer" aria-label="Open preprint: Partition Draws, Not Aggregators: Decomposing Result Variance in Federated LoRA Fine-Tuning Under Non-IID Splits"></a>
             <div class="title">
               <img class="card-logo" src="assets/logos/ieee.png" alt="" width="32" height="32" loading="lazy" decoding="async">
               <span class="title-text">Partition Draws, Not Aggregators: Decomposing Result Variance in Federated LoRA Fine-Tuning Under Non-IID Splits</span>
               <span class="date">IEEE Access · Under review</span>
             </div>
-            <p class="desc">A pre-registered 204-run study that separates partition-draw variance from training-seed variance in federated LoRA fine-tuning (FedIT, FFA-LoRA, FLoRA at 1.1B and 3B scale). At Dirichlet alpha 0.1, partition draws and their interaction with the method account for nearly all held-out loss variance, and few-draw method rankings can reverse. The paper proposes the Partition-Draw Reporting Protocol. <a href="https://doi.org/10.5281/zenodo.22861074" target="_blank" rel="noopener noreferrer">DOI</a> · <a href="https://github.com/jerryadamsfranklin/fedlora-partition-variance" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+            <p class="desc">A pre-registered 204-run study that separates partition-draw variance from training-seed variance in federated LoRA fine-tuning (FedIT, FFA-LoRA, FLoRA at 1.1B and 3B scale). At Dirichlet alpha 0.1, partition draws and their interaction with the method account for nearly all held-out loss variance, and few-draw method rankings can reverse. The paper proposes the Partition-Draw Reporting Protocol. <a href="https://doi.org/10.5281/zenodo.23523842" target="_blank" rel="noopener noreferrer">Preprint</a> · <a href="https://doi.org/10.5281/zenodo.22861074" target="_blank" rel="noopener noreferrer">Code &amp; Data</a> · <a href="https://github.com/jerryadamsfranklin/fedlora-partition-variance" target="_blank" rel="noopener noreferrer">GitHub</a></p>
           </div>
-          <div class="achievement-item anim-item achievement-item-card-link achievement-item-source-arxiv">
+          <div class="achievement-item anim-item achievement-item-card-link">
             <a href="https://arxiv.org/abs/2609.13512" class="achievement-card-hit" target="_blank" rel="noopener noreferrer" aria-label="Open arXiv preprint: A Measured Communication-Quality Frontier for Federated LoRA Fine-Tuning with Adaptive Phase-Switching"></a>
             <div class="title">
               <img class="card-logo" src="assets/logos/springer.png" alt="" width="32" height="32" loading="lazy" decoding="async">
               <span class="title-text">A Measured Communication-Quality Frontier for Federated LoRA Fine-Tuning with Adaptive Phase-Switching</span>
               <span class="date">Scientific Reports · Under review (arXiv:2609.13512)</span>
             </div>
-            <p class="desc">Measures per-round upload and download bytes for five federated LoRA protocols against held-out instruction-following loss and maps the resulting communication-quality frontier. The proposed ReverseAdaptive aggregator learns both LoRA factors, then freezes one once training-loss improvement plateaus, and sits at the frontier's knee: 40.5% less measured round-trip communication than FLoRA at a held-out loss cost of 0.0063. The same threshold transfers to LLaMA-3.2-3B without retuning, saving 30.0% communication. <a href="https://arxiv.org/abs/2609.13512" target="_blank" rel="noopener noreferrer">arXiv</a> · <a href="https://doi.org/10.5281/zenodo.23309301" target="_blank" rel="noopener noreferrer">DOI</a> · <a href="https://github.com/jerryadamsfranklin/fedlora-protocols" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+            <p class="desc">Measures per-round upload and download bytes for five federated LoRA protocols against held-out instruction-following loss and maps the resulting communication-quality frontier. The proposed ReverseAdaptive aggregator learns both LoRA factors, then freezes one once training-loss improvement plateaus, and sits at the frontier's knee: 40.5% less measured round-trip communication than FLoRA at a held-out loss cost of 0.0063. The same threshold transfers to LLaMA-3.2-3B without retuning, saving 30.0% communication. <a href="https://arxiv.org/abs/2609.13512" target="_blank" rel="noopener noreferrer">arXiv</a> · <a href="https://github.com/jerryadamsfranklin/fedlora-protocols" target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://doi.org/10.5281/zenodo.23309301" target="_blank" rel="noopener noreferrer">Code Archive</a></p>
           </div>
-          <div class="achievement-item anim-item achievement-item-static">
+          <div class="achievement-item anim-item achievement-item-card-link">
+            <a href="https://doi.org/10.5281/zenodo.23504005" class="achievement-card-hit" target="_blank" rel="noopener noreferrer" aria-label="Open preprint: Fine-Tuning Large Language Models in Resource-Constrained Environments: Methods and Trade-offs"></a>
             <div class="title">
               <img class="card-logo" src="assets/logos/peerj.png" alt="" width="32" height="32" loading="lazy" decoding="async">
               <span class="title-text">Fine-Tuning Large Language Models in Resource-Constrained Environments: Methods and Trade-offs</span>
               <span class="date">PeerJ Computer Science · Under review</span>
             </div>
-            <p class="desc">This survey examines practical approaches to fine-tuning large language models under realistic hardware limitations. It covers parameter-efficient fine-tuning methods including LoRA and its variants, quantization techniques such as QLoRA and GPTQ, memory optimization strategies, and federated learning approaches for distributed training. The paper synthesizes empirical findings across these methods and proposes a decision framework for selecting appropriate configurations under varying resource constraints. Currently under peer review at PeerJ Computer Science (Q1).</p>
+            <p class="desc">This survey examines practical approaches to fine-tuning large language models under realistic hardware limitations. It covers parameter-efficient fine-tuning methods including LoRA and its variants, quantization techniques such as QLoRA and GPTQ, memory optimization strategies, and federated learning approaches for distributed training. The paper synthesizes empirical findings across these methods and proposes a decision framework for selecting appropriate configurations under varying resource constraints. Currently under peer review at PeerJ Computer Science (Q1). <a href="https://doi.org/10.5281/zenodo.23504005" target="_blank" rel="noopener noreferrer">Preprint</a></p>
           </div>
         </div>
       </div>
@@ -547,7 +550,7 @@
               <span class="title-text">IEEE Internet of Things Journal</span>
               <span class="date">2026</span>
             </div>
-            <p class="desc">Reviewer for the IEEE journal, evaluating submitted manuscripts on IoT systems and applied machine learning.</p>
+            <p class="desc">Reviewer for IEEE's flagship journal on the Internet of Things, evaluating manuscripts on edge intelligence, federated learning, and distributed machine learning for resource-constrained IoT systems.</p>
           </a>
           <a href="https://www.computer.org/csdl/journal/sc" target="_blank" rel="noopener noreferrer" class="achievement-item anim-item">
             <div class="title">
@@ -555,7 +558,7 @@
               <span class="title-text">IEEE Transactions on Services Computing</span>
               <span class="date">2026</span>
             </div>
-            <p class="desc">Reviewer for the IEEE Computer Society journal, evaluating submitted manuscripts on services computing and distributed systems.</p>
+            <p class="desc">Reviewer for the IEEE Computer Society transactions on services computing, evaluating manuscripts on cloud and edge service architectures, distributed systems, and machine learning delivered as a service.</p>
           </a>
           <a href="https://ieeeaccess.ieee.org/" target="_blank" rel="noopener noreferrer" class="achievement-item anim-item">
             <div class="title">
@@ -563,7 +566,7 @@
               <span class="title-text">IEEE Access</span>
               <span class="date">2026</span>
             </div>
-            <p class="desc">Reviewer for the IEEE open-access journal, evaluating submitted manuscripts.</p>
+            <p class="desc">Reviewer for IEEE's multidisciplinary open-access journal, evaluating manuscripts on machine learning, federated learning, and efficient fine-tuning of large language models.</p>
           </a>
           <a href="https://link.springer.com/journal/11227" target="_blank" rel="noopener noreferrer" class="achievement-item anim-item">
             <div class="title">
@@ -690,6 +693,10 @@
       <a href="https://orcid.org/0009-0006-8470-8349" target="_blank" rel="noopener noreferrer" aria-label="ORCID">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.378 2.613 5.378 5.025 0 2.588-2.016 5.016-5.378 5.016h-3.9V7.416zm1.444 1.303v7.444h2.297c2.359 0 3.738-1.359 3.738-3.738 0-2.078-1.5-3.706-3.684-3.706h-2.351z"/></svg>
         ORCID
+      </a>
+      <a href="https://scholar.google.com/citations?user=sDS1eyIAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/></svg>
+        Google Scholar
       </a>
       <a href="https://www.jerryadamsfranklin.com/" target="_blank" rel="noopener noreferrer" aria-label="Personal website">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>

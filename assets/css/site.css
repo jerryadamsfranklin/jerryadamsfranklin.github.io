@@ -3673,6 +3673,7 @@
     #contact.visible .contact-links a:nth-child(3) { animation-delay: 0.5s; }
     #contact.visible .contact-links a:nth-child(4) { animation-delay: 0.6s; }
     #contact.visible .contact-links a:nth-child(5) { animation-delay: 0.7s; }
+    #contact.visible .contact-links a:nth-child(6) { animation-delay: 0.8s; }
 
     /* Hold item entrances until each card scrolls into view (.is-shown).
        Section headers / portal still run on .visible; scroll timing replaces stagger. */
