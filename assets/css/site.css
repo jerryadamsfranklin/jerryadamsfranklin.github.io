@@ -4566,17 +4566,6 @@
         justify-self: start;
         text-align: left;
       }
-      /* Trade articles + Peer reviewer: keep short dates on the right */
-      #publications .publications-stack > .writing-block:not(:first-child) .achievement-item .title:has(.card-logo) {
-        grid-template-columns: auto minmax(0, 1fr) auto;
-      }
-      #publications .publications-stack > .writing-block:not(:first-child) .achievement-item .title:has(.card-logo) .date {
-        grid-column: 3;
-        grid-row: 1;
-        justify-self: end;
-        text-align: right;
-        white-space: nowrap;
-      }
     }
 
     .timeline-more {
