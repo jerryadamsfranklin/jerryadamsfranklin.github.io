@@ -3673,6 +3673,7 @@
     #contact.visible .contact-links a:nth-child(3) { animation-delay: 0.5s; }
     #contact.visible .contact-links a:nth-child(4) { animation-delay: 0.6s; }
     #contact.visible .contact-links a:nth-child(5) { animation-delay: 0.7s; }
+    #contact.visible .contact-links a:nth-child(6) { animation-delay: 0.8s; }
 
     /* Hold item entrances until each card scrolls into view (.is-shown).
        Section headers / portal still run on .visible; scroll timing replaces stagger. */
@@ -4542,11 +4543,11 @@
       text-align: right;
       white-space: nowrap;
     }
-    /* Publications: venue/status can be long — stack under the title so cards stay uniform */
-    #publications .achievement-item .title:has(.card-logo) {
+    /* Research papers only: venue/status can be long — stack under the title */
+    #publications .publications-stack > .writing-block:first-child .achievement-item .title:has(.card-logo) {
       grid-template-columns: auto minmax(0, 1fr);
     }
-    #publications .achievement-item .title:has(.card-logo) .date {
+    #publications .publications-stack > .writing-block:first-child .achievement-item .title:has(.card-logo) .date {
       grid-column: 2;
       grid-row: 2;
       justify-self: start;
